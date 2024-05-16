@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Metadata and styling setup -->
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/resources/static/css/styles.css}">
+</head>
+
+<!-- Page content -->
+<body>
+<div class="centerDiv">
+    <form action="/booking" method="post" class="centerbutton">
+        <button type="submit">Click to create a booking</button>
+        <input type="hidden" name="data" value="additionalData"/>  <!-- Hidden input field -->
+    </form>
+</div>
+
+<br><br><br>
+
+<form th:action="@{'/adminpage'}" th:object="${admin}" method="post">
+
+    <div class="loginform">
+        <label for="username">User name:</label>
+        <input th:field="*{userName}" type="text" id="username" name="user"/> <br> <br>
+    </div>
+
+    <div class="loginform">
+        <label for="password">Password:</label>
+        <input th:field="*{password}" type="text" id="password" name="Wish name"/> <br> <br>
+    </div>
+    <input type="submit" value="Login">
+    </form>
+</body>
+
+</html>
