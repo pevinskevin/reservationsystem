@@ -25,6 +25,14 @@ public class ReservationService {
         return reservationRepository.addReservation(reservation);
     }
 
+    public int checkUnavailableSeats(Reservation reservation) {
+        return reservationRepository.checkUnavailableSeats(reservation);
+    }
+
+    public int checkTotalSeatCapacity() {
+        return reservationRepository.checkTotalSeatCapacity();
+    }
+
     public Set<CafeTable> checkAvailableTables(LocalDate reservationDate, int reservationDurationInHours, int numberOfPeople) {
         return reservationRepository.checkAvailableTables(reservationDate, reservationDurationInHours, numberOfPeople);
     }

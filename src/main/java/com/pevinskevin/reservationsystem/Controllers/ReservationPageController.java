@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 
@@ -24,10 +25,23 @@ public class ReservationPageController {
         return "reservationpage";
     }
 
-    @PostMapping("/postreservation")
-    public String createBooking(@ModelAttribute Reservation reservation) {
+    @GetMapping("/reservationdenied/{numberOfAvailableSeats}")
+    public String reservationDenied(@PathVariable int numberOfAvailableSeats,
+                                    Model model) {
 
-        String reservationUrl = reservationService.createReservation(reservation);
-            return "redirect:/reservation/" + reservationUrl;
+        model.addAttribute("numberOfAvailableSeats", numberOfAvailableSeats);
+        return "reservationdenied.html";
     }
+
+    @PostMapping("/postreservation")
+    public String createBooking(@ModelAttribute("reservation") Reservation reservation) {
+        int totalSeatCapacity = reservationService.checkTotalSeatCapacity();
+        int unavailableSeats = reservationService.checkUnavailableSeats(reservation);
+        int totalAvailableSeats = totalSeatCapacity - unavailableSeats;
+        int numberOfGuests = reservation.getNumberOfSeats();
+        if ((totalAvailableSeats - numberOfGuests ) >= 0){
+            String reservationUrl = reservationService.createReservation(reservation);
+            return "redirect:/reservation/" + reservationUrl;
+        }
+        return "redirect:/reservationdenied/" + totalAvailableSeats;}
 }
