@@ -19,6 +19,7 @@ public class IndexController {
 
     @GetMapping("/")
     public String displayIndex(Model model){
+
         model.addAttribute("admin", new Admin());
         return "index";
     }
@@ -27,13 +28,12 @@ public class IndexController {
     public String redirectAdminPage(@ModelAttribute("admin") Admin admin,
                                     Model model){
 
-        System.out.println();
-
         return "redirect:/" + adminServices.checkUserNamePasswordMatch(admin.getUserName(), admin.getPassword());
     }
 
     @PostMapping("/booking")
     public String redirectBookingPage(){
-        return "redirect:/booking";
+
+        return "redirect:/reservation";
     }
 }

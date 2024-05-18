@@ -11,6 +11,6 @@ public class AdminFrontPageController {
     @GetMapping("/{adminUrl}")
     public String diplayAdminFrontPage(Model model,
                                        @PathVariable String adminUrl){
-        return "adminfrontpage";
+        return "adminview";
     }
 }

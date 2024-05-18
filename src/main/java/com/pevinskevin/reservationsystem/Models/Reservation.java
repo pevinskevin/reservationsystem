@@ -2,8 +2,8 @@ package com.pevinskevin.reservationsystem.Models;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.sql.Time;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Set;
 
 public class Reservation {
@@ -14,11 +14,11 @@ public class Reservation {
     private int phoneNumber;
     private int numberOfSeats;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date reservationDate;
-    private Time time;
+    private LocalDate reservationDate;
+    private LocalTime time;
     private int reservationDurationInHours;
-    private String celebration;
-    private String birthday;
+    private Boolean celebration;
+    private Boolean birthday;
     private String comments;
     private String url;
     private Set<CafeTable> cafeTables;
@@ -72,19 +72,19 @@ public class Reservation {
         this.numberOfSeats = numberOfSeats;
     }
 
-    public Date getReservationDate() {
+    public LocalDate getReservationDate() {
         return reservationDate;
     }
 
-    public void setReservationDate(Date reservationDate) {
+    public void setReservationDate(LocalDate reservationDate) {
         this.reservationDate = reservationDate;
     }
 
-    public Time getTime() {
+    public LocalTime getTime() {
         return time;
     }
 
-    public void setTime(Time time) {
+    public void setTime(LocalTime time) {
         this.time = time;
     }
 
@@ -96,19 +96,19 @@ public class Reservation {
         this.reservationDurationInHours = reservationDurationInHours;
     }
 
-    public String getCelebration() {
+    public Boolean getCelebration() {
         return celebration;
     }
 
-    public void setCelebration(String celebration) {
+    public void setCelebration(Boolean celebration) {
         this.celebration = celebration;
     }
 
-    public String getBirthday() {
+    public Boolean getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(String birthday) {
+    public void setBirthday(Boolean birthday) {
         this.birthday = birthday;
     }
 

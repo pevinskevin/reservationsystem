@@ -6,7 +6,7 @@ import com.pevinskevin.reservationsystem.Repositories.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Set;
 
 @Service
@@ -15,16 +15,17 @@ public class ReservationService {
     @Autowired
     ReservationRepository reservationRepository;
 
-    public Reservation createReservation(Reservation reservation){
-        if (!checkAvailableTables(reservation.getReservationDate(), reservation.getReservationDurationInHours(), reservation.getNumberOfSeats()).isEmpty()) {
+    public String createReservation(Reservation reservation){
+       /* if (!checkAvailableTables(reservation.getReservationDate(), reservation.getReservationDurationInHours(), reservation.getNumberOfSeats()).isEmpty()) {
             reservationRepository.save(reservation);
         } else {
             return null;
-        }
-        return reservation;
+        }*/
+
+        return reservationRepository.addReservation(reservation);
     }
 
-    public Set<CafeTable> checkAvailableTables(Date reservationDate, int reservationDurationInHours, int numberOfPeople) {
+    public Set<CafeTable> checkAvailableTables(LocalDate reservationDate, int reservationDurationInHours, int numberOfPeople) {
         return reservationRepository.checkAvailableTables(reservationDate, reservationDurationInHours, numberOfPeople);
     }
 
