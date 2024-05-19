@@ -3,8 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet">
 </head>
 <body>
-
+<tr id="block" th:each="reservation : ${reservation}">
+    <td th:text="${reservation.name}"></td>
+    <td th:text="${reservation.companyName}"></td>
+    <td th:text="${reservation.reservationDate}"></td>
+    <td th:text="${reservation.numberOfSeats}"></td>
+    <br> <br> <br>
+  <!--  <td>
+        <form class="buttonform" th:action="@{'/' + ${wishListStringId} + '/editwish'}" method="post">
+            <button type="submit">Edit Wish</button>
+             Optional hidden input field
+            <input type="hidden" name="wishIntegerId" th:value="${wish.id}" />
+        </form>
+    </td>
+    <td>
+        <form class="buttonform" th:action="@{'/' + ${wishListStringId} + '/deletewish'}" method="post">
+            <button type="submit">Delete Wish</button>
+             Optional hidden input field
+            <input type="hidden" name="wishIntegerId" th:value="${wish.id}" />
+        </form>
+    </td> -->
+</tr>
 </body>
 </html>

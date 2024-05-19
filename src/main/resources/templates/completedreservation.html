@@ -6,5 +6,17 @@
 </head>
 <body>
 
+<h2>Reservation Details</h2>
+<p>Name: <span th:text="${reservation.name}"></span></p>
+<p>Email: <span th:text="${reservation.email}"></span></p>
+<p>Company Name: <span th:text="${reservation.companyName}"></span></p>
+<p>Phone Number: <span th:text="${reservation.phoneNumber}"></span></p>
+<p>Number of Seats: <span th:text="${reservation.numberOfSeats}"></span></p>
+<p>Reservation Date: <span th:text="${reservation.reservationDate}"></span></p>
+<p>Time: <span th:text="${reservation.time}"></span></p>
+<p>Duration (hours): <span th:text="${reservation.durationInHours}"></span></p>
+<p>Comments: <span th:text="${reservation.comments}"></span></p>
+
+
 </body>
 </html>

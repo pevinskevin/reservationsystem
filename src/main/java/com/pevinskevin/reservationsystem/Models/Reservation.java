@@ -16,7 +16,7 @@ public class Reservation {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate reservationDate;
     private LocalTime time;
-    private int reservationDurationInHours;
+    private int durationInHours;
     private Boolean celebration;
     private Boolean birthday;
     private String comments;
@@ -88,12 +88,12 @@ public class Reservation {
         this.time = time;
     }
 
-    public int getReservationDurationInHours() {
-        return reservationDurationInHours;
+    public int getDurationInHours() {
+        return durationInHours;
     }
 
-    public void setReservationDurationInHours(int reservationDurationInHours) {
-        this.reservationDurationInHours = reservationDurationInHours;
+    public void setDurationInHours(int durationInHours) {
+        this.durationInHours = durationInHours;
     }
 
     public Boolean getCelebration() {

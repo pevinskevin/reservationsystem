@@ -41,6 +41,10 @@ public class ReservationService {
 
     }
 
+    public Reservation getReservationByUrl(String Url) {
+        return reservationRepository.getReservationByUrl(Url);
+    }
+
     public void addBeverageReservationsToReservation(Reservation reservation, Set<BeverageReservation> beverageReservations) {
         reservation.setBeverageReservations(beverageReservations);
     }

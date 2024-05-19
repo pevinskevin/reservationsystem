@@ -1,9 +1,11 @@
 package com.pevinskevin.reservationsystem.Services;
 
-import com.pevinskevin.reservationsystem.Models.Admin;
+import com.pevinskevin.reservationsystem.Models.Reservation;
 import com.pevinskevin.reservationsystem.Repositories.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class AdminServices {
@@ -13,6 +15,10 @@ public class AdminServices {
 
     public String checkUserNamePasswordMatch(String username, String password) {
         return adminRepository.checkUserNameAndPasswordMatch(username, password);
+    }
+
+    public List<Reservation> getAllReservations() {
+        return adminRepository.getAllReservations();
     }
 
     public void addBeverageToDb(){}
