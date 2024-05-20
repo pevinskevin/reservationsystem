@@ -19,7 +19,6 @@ public class AdminFrontPageController {
     public String diplayAdminFrontPage(Model model,
                                        @PathVariable String adminUrl){
 
-        model.addAttribute("adminUrl", adminUrl);
         model.addAttribute("reservation", adminServices.getAllReservations());
         return "adminview";
     }
@@ -29,8 +28,7 @@ public class AdminFrontPageController {
                                            @PathVariable String adminUrl,
                                            @RequestParam("reservationUrl") String reservationUrl){
 
-        String url = adminUrl;
-        return "redirect:/" + url + "/" + reservationUrl;
+        return "redirect:/{adminUrl}/" + reservationUrl;
     }
 
 }
