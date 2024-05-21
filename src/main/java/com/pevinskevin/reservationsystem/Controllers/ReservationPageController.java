@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+
 
 @Controller
 public class ReservationPageController {
@@ -16,6 +18,14 @@ public class ReservationPageController {
 
     @GetMapping("/reservation")
     public String displayBookingPage(Model model) {
+
+        LocalDate tomorrow = LocalDate.now().plusDays(1);
+        model.addAttribute("minDate", tomorrow);
+
+        String minTime = "07:00";
+        String maxTime = "22:00";
+        model.addAttribute("minTime", minTime);
+        model.addAttribute("maxTime", maxTime);
 
         model.addAttribute("reservation", new Reservation());
         return "reservationpage";

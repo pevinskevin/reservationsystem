@@ -1,5 +1,6 @@
 package com.pevinskevin.reservationsystem.Repositories;
 
+import com.pevinskevin.reservationsystem.Models.CafeTableReservation;
 import com.pevinskevin.reservationsystem.Models.Reservation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -25,4 +26,6 @@ public class AdminRepository {
         RowMapper<Reservation> rowMapper = new BeanPropertyRowMapper<>(Reservation.class);
         return jdbcTemplate.query(query, rowMapper);
     }
+
+    //public List<CafeTableReservation> getAll(String username) {}
 }

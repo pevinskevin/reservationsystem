@@ -35,7 +35,7 @@
 
     <div class="bookingform">
         <label for="reservationDate">reservationDate:</label>
-        <input th:field="*{reservationDate}" type="date" id="reservationDate" name="numberOfSeats"/> <br> <br>
+        <input th:field="*{reservationDate}" type="date" id="reservationDate" name="reservationDate" th:attr="min=${minDate}" /> <br> <br>
     </div>
 
     <div class="bookingform">
