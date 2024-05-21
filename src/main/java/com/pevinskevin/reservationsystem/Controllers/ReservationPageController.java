@@ -9,8 +9,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-
 
 @Controller
 public class ReservationPageController {
@@ -88,7 +86,7 @@ public class ReservationPageController {
             return "reservationpage";
         }
 
-            int totalSeatCapacity = reservationService.checkTotalSeatCapacity();
+        int totalSeatCapacity = reservationService.checkTotalSeatCapacity();
             int unavailableSeats = reservationService.checkUnavailableSeats(reservation);
             int totalAvailableSeats = totalSeatCapacity - unavailableSeats;
             int numberOfGuests = reservation.getNumberOfSeats();

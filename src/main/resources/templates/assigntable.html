@@ -6,5 +6,33 @@
 </head>
 <body>
 
+<tr id="block" th:each="cafetable : ${availableTables}">
+    <td th:text="${cafetable.id}"></td>
+    <td th:text="${cafetable.seatCapacity}"></td>
+    <td th:text="${cafetable.tableNumber}"></td>
+    <td>
+        <form class="buttonform" th:action="@{'/'+ ${adminUrl} + '/' + ${reservationUrl} }" th:object="${cafetable}" method="post">
+            <button type="submit">Assign table</button>
+            <input type="hidden" name="cafeTableId" th:value="${cafetable.id}"/>
+            <!-- Optional hidden input field -->
+        </form>
+    </td>
+    <br> <br> <br>
+    <!--  <td>
+          <form class="buttonform" th:action="@{'/' + ${wishListStringId} + '/editwish'}" method="post">
+              <button type="submit">Edit Wish</button>
+               Optional hidden input field
+              <input type="hidden" name="wishIntegerId" th:value="${wish.id}" />
+          </form>
+      </td>
+      <td>
+          <form class="buttonform" th:action="@{'/' + ${wishListStringId} + '/deletewish'}" method="post">
+              <button type="submit">Delete Wish</button>
+               Optional hidden input field
+              <input type="hidden" name="wishIntegerId" th:value="${wish.id}" />
+          </form>
+      </td> -->
+</tr>
+
 </body>
 </html>

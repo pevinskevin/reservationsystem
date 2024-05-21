@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -41,12 +43,20 @@ public class ReservationService {
 
     }
 
+    public List<CafeTable> getAllAvailableTables(LocalDate reservationDate, LocalTime time, LocalTime toTime) {
+        return reservationRepository.getAvailableTables(reservationDate, time, toTime);
+    }
+
     public Reservation getReservationByUrl(String Url) {
         return reservationRepository.getReservationByUrl(Url);
     }
 
     public void addBeverageReservationsToReservation(Reservation reservation, Set<BeverageReservation> beverageReservations) {
         reservation.setBeverageReservations(beverageReservations);
+    }
+
+    public void assignTableToReservation(int reservationId, int tableId) {
+        reservationRepository.assignTableToReservation(reservationId, tableId);
     }
 
 }
