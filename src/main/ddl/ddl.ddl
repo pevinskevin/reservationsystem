@@ -13,7 +13,7 @@ CREATE TABLE reservation (
                              `number_of_seats` int NOT NULL,
                              `reservation_date` date NOT NULL,
                              `time` time NOT NULL,
-                             `duration` int NOT NULL,
+                             `duration_in_hours` int NOT NULL,
                              `celebration` ENUM ('false', 'true') DEFAULT 'false',
                              `birthday` ENUM ('false', 'true') DEFAULT 'false',
                              `comments` VARCHAR(255),
