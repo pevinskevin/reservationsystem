@@ -37,19 +37,15 @@ public class ReservationRepository {
     }
 
     public int checkUnavailableSeats(Reservation reservation) {
-        // Convert duration in hours to time format string
-        String durationString = reservation.getDurationInHours() + ":00:00";
-
-        String query = "SELECT SUM(number_of_seats)" +
-                "AS total_reserved_seats" +
-                "FROM reservation WHERE reservation_date = ?" +
-                "AND NOT(? >= ADDTIME(time, SEC_TO_TIME(duration_in_hours*60))" +
-                "OR ADDTIME(?, SEC_TO_TIME(?*60)) <= time)";
+        String query = "SELECT SUM(number_of_seats) " +
+                "AS total_reserved_seats " +
+                "FROM reservation WHERE reservation_date = ? " +
+                "AND NOT(? > ADDTIME(time, SEC_TO_TIME(duration_in_hours*3599)) " +
+                "OR ADDTIME(?, SEC_TO_TIME(?*3600)) < time)";
 
         Integer totalSeatsReserved = jdbcTemplate.queryForObject(query, new Object[] {reservation.getReservationDate(), reservation.getTime(), reservation.getTime(), reservation.getDurationInHours()}, Integer.class);
 
         if (totalSeatsReserved == null) {
-            // Logic when no rows found
             return 0;
         }
 
@@ -64,8 +60,8 @@ public class ReservationRepository {
     public String addReservation(Reservation reservation) {
         String url = UUID.randomUUID().toString();
         String query = "INSERT INTO Reservation" +
-                "(name, email, company_name, phone_number, number_of_seats, reservation_date, time, duration_in_hours, comments, url)" +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                " (name, email, company_name, phone_number, number_of_seats, reservation_date, time, duration_in_hours, comments, url)" +
+                " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(query, reservation.getName(), reservation.getEmail(), reservation.getCompanyName(), reservation.getPhoneNumber(), reservation.getNumberOfSeats(), reservation.getReservationDate(), reservation.getTime(), reservation.getDurationInHours(), reservation.getComments(), url);
         return url;
     }

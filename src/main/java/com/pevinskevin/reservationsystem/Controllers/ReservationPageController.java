@@ -86,6 +86,9 @@ public class ReservationPageController {
             return "reservationpage";
         }
 
+        //First it needs to check for total seat capacity, where tables within the same timeframe that are assigned to a reservation are excluded.
+        //Then it checks for unassigned reservations and uses that to figure out the total available seat capacity.
+
         int totalSeatCapacity = reservationService.checkTotalSeatCapacity();
             int unavailableSeats = reservationService.checkUnavailableSeats(reservation);
             int totalAvailableSeats = totalSeatCapacity - unavailableSeats;
