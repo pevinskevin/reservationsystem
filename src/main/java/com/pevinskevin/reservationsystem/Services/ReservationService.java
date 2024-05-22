@@ -27,6 +27,10 @@ public class ReservationService {
         return reservationRepository.addReservation(reservation);
     }
 
+    public int checkForAssignedTables(Reservation reservation) {
+        return reservationRepository.checkForAssignedTables(reservation);
+    }
+
     public int checkUnavailableSeats(Reservation reservation) {
         return reservationRepository.checkUnavailableSeats(reservation);
     }

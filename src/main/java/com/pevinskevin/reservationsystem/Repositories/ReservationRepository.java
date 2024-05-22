@@ -36,9 +36,24 @@ public class ReservationRepository {
         return jdbcTemplate.queryForObject(query, Integer.class);
     }
 
+    public int checkForAssignedTables(Reservation reservation) {
+        String query = "SELECT SUM(cafe_table.seat_capacity) " +
+                "FROM cafe_table_reservation " +
+                "JOIN cafe_table ON cafe_table_reservation.cafe_table_id = cafe_table.id " +
+                "JOIN reservation ON cafe_table_reservation.reservation_id = reservation.id " +
+                "WHERE reservation.reservation_date = ? " +
+                "AND NOT (? > ADDTIME(reservation.time, SEC_TO_TIME(reservation.duration_in_hours*3599)) " +
+                "OR ADDTIME(?, SEC_TO_TIME(?*3600)) < reservation.time)";
+        Integer totalSeatsReserved = jdbcTemplate.queryForObject(query, new Object[] {reservation.getReservationDate(), reservation.getTime(), reservation.getTime(), reservation.getDurationInHours()}, Integer.class);
+
+        if (totalSeatsReserved == null) {
+            return 0;
+        }
+        return totalSeatsReserved;
+    }
+
     public int checkUnavailableSeats(Reservation reservation) {
         String query = "SELECT SUM(number_of_seats) " +
-                "AS total_reserved_seats " +
                 "FROM reservation WHERE reservation_date = ? " +
                 "AND NOT(? > ADDTIME(time, SEC_TO_TIME(duration_in_hours*3599)) " +
                 "OR ADDTIME(?, SEC_TO_TIME(?*3600)) < time)";
