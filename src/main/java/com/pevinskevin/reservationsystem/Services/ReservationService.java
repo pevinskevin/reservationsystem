@@ -39,14 +39,6 @@ public class ReservationService {
         return reservationRepository.checkTotalSeatCapacity();
     }
 
-    public Set<CafeTable> checkAvailableTables(LocalDate reservationDate, int reservationDurationInHours, int numberOfPeople) {
-        return reservationRepository.checkAvailableTables(reservationDate, reservationDurationInHours, numberOfPeople);
-    }
-
-    public void addTablesToReservation(Reservation reservation, Set<CafeTable> cafeTables) {
-
-    }
-
     public List<CafeTable> getAllAvailableTables(LocalDate reservationDate, LocalTime time, LocalTime toTime) {
         return reservationRepository.getAvailableTables(reservationDate, time, toTime);
     }
@@ -62,5 +54,4 @@ public class ReservationService {
     public void assignTableToReservation(int reservationId, int tableId) {
         reservationRepository.assignTableToReservation(reservationId, tableId);
     }
-
 }

@@ -25,7 +25,6 @@ public class AssignTableController {
 
         Reservation reservation = reservationService.getReservationByUrl(reservationUrl);
         model.addAttribute("reservation", reservation);
-
         LocalTime getTime = reservation.getTime();
         LocalTime toTime = getTime.plusHours((Long.valueOf(reservation.getDurationInHours())));
         List<CafeTable> availableTables = reservationService.getAllAvailableTables(reservation.getReservationDate(), getTime, toTime);

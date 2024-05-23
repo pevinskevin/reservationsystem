@@ -98,6 +98,7 @@ public class ReservationPageController {
                 String reservationUrl = reservationService.createReservation(reservation);
                 return "redirect:/reservation/" + reservationUrl;
             }
+            if (totalAvailableSeats < 0) {return "redirect:/reservationdenied/" + 0; }
             return "redirect:/reservationdenied/" + totalAvailableSeats;
         }
 }

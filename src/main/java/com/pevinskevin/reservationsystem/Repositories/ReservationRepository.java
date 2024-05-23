@@ -19,17 +19,6 @@ public class ReservationRepository {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    /*public Reservation save(Reservation reservation) {
-        return reservation;
-    }*/
-
-    public Set<CafeTable> checkAvailableTables(LocalDate reservationDate, int reservationDurationInHours, int numberOfPeople) {
-        // Kald JDBC template med SQL
-
-        String query = "SELECT * FROM Table WHERE foreign key = null";
-        return new HashSet<CafeTable>() {{}};
-    }
-
     public int checkTotalSeatCapacity() {
         String query = "SELECT SUM(seat_capacity)" +
                 "AS total_seat_capacity FROM cafe_table";
