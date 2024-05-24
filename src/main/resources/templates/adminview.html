@@ -10,8 +10,10 @@
     <td th:text="${reservation.name}"></td>
     <td th:text="${reservation.companyName}"></td>
     <td th:text="${reservation.reservationDate}"></td>
-    <td th:text="${reservation.numberOfSeats}"></td>
-    <td th:text="${reservation.durationInHours}"></td>
+    <td th:text="${reservation.time}"></td>
+    <td th:text="' - Duration: ' + ${reservation.durationInHours}"></td>
+    <td th:text="' - Number of Seats: ' + ${reservation.numberOfSeats}"></td>
+
     <td>
         <form class="buttonform" th:action="@{'/'+ ${adminUrl} + '/assigntable'}" th:object="${reservation}" method="post">
             <button type="submit">Assign table</button>

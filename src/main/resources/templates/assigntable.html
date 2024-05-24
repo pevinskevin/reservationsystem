@@ -7,9 +7,9 @@
 <body>
 
 <tr id="block" th:each="cafetable : ${availableTables}">
-    <td th:text="${cafetable.id}"></td>
-    <td th:text="${cafetable.seatCapacity}"></td>
-    <td th:text="${cafetable.tableNumber}"></td>
+    <td th:text="'Table ID: ' + ${cafetable.id}"></td>
+    <td th:text="' - Seat Capacity: ' + ${cafetable.seatCapacity}"></td>
+    <td th:text="' - Table number: ' + ${cafetable.tableNumber}"></td>
     <td>
         <form class="buttonform" th:action="@{'/'+ ${adminUrl} + '/' + ${reservationUrl} }" th:object="${cafetable}" method="post">
             <button type="submit">Assign table</button>

@@ -23,6 +23,12 @@ public class AssignTableController {
                                       @PathVariable String reservationUrl,
                                       Model model) {
 
+        //Display bookings without tables assigned for ALL guests.
+        //Within each booking display the available tables
+        //When a booking has seating for all guests, it's not available in the list.
+        //Potentially add a calendar that displays all bookings in a calendar grid format?
+
+
         Reservation reservation = reservationService.getReservationByUrl(reservationUrl);
         model.addAttribute("reservation", reservation);
         LocalTime getTime = reservation.getTime();

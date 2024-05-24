@@ -26,5 +26,4 @@ public class AdminRepository {
         return jdbcTemplate.query(query, rowMapper);
     }
 
-    //public List<CafeTableReservation> getAll(String username) {}
 }
