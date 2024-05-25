@@ -27,6 +27,10 @@ public class ReservationService {
         return reservationRepository.addReservation(reservation);
     }
 
+    public List<Integer> getReservationsWithoutAllSeatsCovered() {
+        return reservationRepository.getReservationIdsNeedingTables();
+    }
+
     public int checkForAssignedTables(Reservation reservation) {
         return reservationRepository.checkForAssignedTables(reservation);
     }

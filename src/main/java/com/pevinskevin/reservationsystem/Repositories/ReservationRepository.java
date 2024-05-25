@@ -5,13 +5,12 @@ import com.pevinskevin.reservationsystem.Models.CafeTable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 @Repository
@@ -69,6 +68,19 @@ public class ReservationRepository {
         jdbcTemplate.update(query, reservation.getName(), reservation.getEmail(), reservation.getCompanyName(), reservation.getPhoneNumber(), reservation.getNumberOfSeats(), reservation.getReservationDate(), reservation.getTime(), reservation.getDurationInHours(), reservation.getComments(), url);
         return url;
     }
+
+    public List<Integer> getReservationIdsNeedingTables() {
+        String query = "SELECT reservation.id, reservation.number_of_seats " +
+                "FROM reservation " +
+                "LEFT JOIN cafe_table_reservation ON reservation.id = cafe_table_reservation.reservation_id " +
+                "LEFT JOIN cafe_table ON cafe_table_reservation.cafe_table_id = cafe_table.id " +
+                "GROUP BY reservation.id " +
+                "HAVING SUM(cafe_table.seat_capacity) IS NULL OR SUM(cafe_table.seat_capacity) < reservation.number_of_seats";
+
+        RowMapper<Integer> rowMapper = (rs, rowNum) -> rs.getInt("id");
+        return jdbcTemplate.query(query, rowMapper);
+    }
+
     public List<CafeTable> getAvailableTables(LocalDate desiredDate, LocalTime desiredStartTime, LocalTime desiredEndTime) {
         String sql = "SELECT * " +
                 "FROM cafe_table ct " +

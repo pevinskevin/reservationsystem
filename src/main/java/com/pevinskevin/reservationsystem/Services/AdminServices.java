@@ -17,8 +17,8 @@ public class AdminServices {
         return adminRepository.checkUserNameAndPasswordMatch(username, password);
     }
 
-    public List<Reservation> getAllReservations() {
-        return adminRepository.getAllReservations();
+    public List<Reservation> getAllReservations(List<Integer> listOfIds) {
+        return adminRepository.getAllReservations(listOfIds);
     }
 
     public void addBeverageToDb(){}

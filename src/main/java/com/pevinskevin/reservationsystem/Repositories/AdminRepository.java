@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -20,10 +21,16 @@ public class AdminRepository {
         return jdbcTemplate.queryForObject(query, String.class, username, password);
     }
 
-    public List<Reservation> getAllReservations() {
-        String query = "SELECT * FROM reservation ORDER BY reservation_date DESC";
-        RowMapper<Reservation> rowMapper = new BeanPropertyRowMapper<>(Reservation.class);
-        return jdbcTemplate.query(query, rowMapper);
+    public List<Reservation> getAllReservations(List<Integer> listOfIds) {
+        String query = "SELECT * FROM reservation WHERE id = ? ORDER BY reservation_date DESC";
+        List<Reservation> reservations = new ArrayList<>();
+
+        for (Integer id : listOfIds) {
+            Reservation reservation = jdbcTemplate.queryForObject(query, new BeanPropertyRowMapper<>(Reservation.class), id);
+            reservations.add(reservation);
+        }
+
+        return reservations;
     }
 
 }
