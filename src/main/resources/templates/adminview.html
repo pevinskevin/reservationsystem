@@ -6,13 +6,14 @@
     <link rel="stylesheet">
 </head>
 <body>
-<tr id="block" th:each="reservation : ${reservation}">
+<tr id="block" th:each="reservation, stat : ${reservation}">
     <td th:text="${reservation.name}"></td>
     <td th:text="${reservation.companyName}"></td>
     <td th:text="${reservation.reservationDate}"></td>
     <td th:text="${reservation.time}"></td>
     <td th:text="' - Duration: ' + ${reservation.durationInHours}"></td>
     <td th:text="' - Number of Seats: ' + ${reservation.numberOfSeats}"></td>
+    <td th:text="' - Unassigned Seats: ' + (${reservation.numberOfSeats - sumOfAssignedSeats[stat.index]})"></td>
 
     <td>
         <form class="buttonform" th:action="@{'/'+ ${adminUrl} + '/assigntable'}" th:object="${reservation}" method="post">
@@ -22,20 +23,6 @@
         </form>
     </td>
     <br> <br> <br>
-  <!--  <td>
-        <form class="buttonform" th:action="@{'/' + ${wishListStringId} + '/editwish'}" method="post">
-            <button type="submit">Edit Wish</button>
-             Optional hidden input field
-            <input type="hidden" name="wishIntegerId" th:value="${wish.id}" />
-        </form>
-    </td>
-    <td>
-        <form class="buttonform" th:action="@{'/' + ${wishListStringId} + '/deletewish'}" method="post">
-            <button type="submit">Delete Wish</button>
-             Optional hidden input field
-            <input type="hidden" name="wishIntegerId" th:value="${wish.id}" />
-        </form>
-    </td> -->
 </tr>
 </body>
 </html>

@@ -25,13 +25,21 @@ public class AdminFrontPageController {
                                        @PathVariable String adminUrl){
 
         //Display bookings without tables assigned for ALL guests.
-        List<Integer> listofIds = reservationService.getReservationsWithoutAllSeatsCovered();
-
         //Within each booking display the available tables
         //When a booking has seating for all guests, it's not available in the list.
         //Potentially add a calendar that displays all bookings in a calendar grid format?
-
+        List<Integer> listofIds = reservationService.getReservationsWithoutAllSeatsCovered();
         model.addAttribute("reservation", adminServices.getAllReservations(listofIds));
+
+        //Display unassigned seats
+        //1. Query for reservation ID in cafe_table_reservation.
+        //2. Return the seat capacity of the tables that are assigned
+        //3. Subtract the tables capacity from the number of guests.
+        List<Integer> sumOfAssignedSeats = reservationService.getListOfAssignedTablesWithIdList(listofIds);
+        model.addAttribute("sumOfAssignedSeats", sumOfAssignedSeats);
+
+
+
         return "adminview";
     }
 

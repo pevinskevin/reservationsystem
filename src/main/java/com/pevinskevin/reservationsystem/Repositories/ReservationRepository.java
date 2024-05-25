@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import java.util.ArrayList;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -101,6 +102,26 @@ public class ReservationRepository {
         String query = "INSERT INTO cafe_table_reservation (reservation_id, cafe_table_id) values (?, ?)";
         jdbcTemplate.update(query, reservationId, tableId);
 
+    }
+
+    public List<Integer> getListOfAssignedTablesWithIdList(List<Integer> idList) {
+        String query = "SELECT SUM(cafe_table.seat_capacity) " +
+                "FROM cafe_table_reservation " +
+                "LEFT JOIN cafe_table ON cafe_table_reservation.cafe_table_id = cafe_table.id " +
+                "LEFT JOIN reservation ON cafe_table_reservation.reservation_id = reservation.id " +
+                "WHERE reservation.id = ? " +
+                "ORDER BY reservation.reservation_date DESC";
+        List<Integer> resultList = new ArrayList<>();
+
+        for(Integer id : idList) {
+            Integer result = jdbcTemplate.queryForObject(query, Integer.class, id);
+            if (result != null) {
+                resultList.add(result);
+            } else {
+                resultList.add(0); // Add 0 to resultList when result is null
+            }
+        }
+        return resultList;
     }
 
 }

@@ -58,4 +58,8 @@ public class ReservationService {
     public void assignTableToReservation(int reservationId, int tableId) {
         reservationRepository.assignTableToReservation(reservationId, tableId);
     }
+
+    public List<Integer> getListOfAssignedTablesWithIdList(List<Integer> tableIdList) {
+        return reservationRepository.getListOfAssignedTablesWithIdList(tableIdList);
+    }
 }
