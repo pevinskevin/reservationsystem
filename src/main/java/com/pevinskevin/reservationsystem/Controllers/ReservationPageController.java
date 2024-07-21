@@ -1,5 +1,6 @@
 package com.pevinskevin.reservationsystem.Controllers;
 
+import com.pevinskevin.reservationsystem.Models.Beverage;
 import com.pevinskevin.reservationsystem.Models.Reservation;
 import com.pevinskevin.reservationsystem.Services.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,8 @@ public class ReservationPageController {
         String maxTime = "22:00";
         model.addAttribute("minTime", minTime);
         model.addAttribute("maxTime", maxTime);
+
+        model.addAttribute("beverage", new Beverage());
 
         model.addAttribute("reservation", new Reservation());
         return "reservationpage";
@@ -91,6 +94,7 @@ public class ReservationPageController {
             int theoreticalTotalSeatCapacity = reservationService.checkTotalSeatCapacity();
             int reservedSeats = reservationService.checkForAssignedTables(reservation);
             int realTotalSeatCapacity = theoreticalTotalSeatCapacity - reservedSeats;
+
             int unavailableSeats = reservationService.checkUnavailableSeats(reservation) - reservedSeats;
             int totalAvailableSeats = (realTotalSeatCapacity - unavailableSeats);
             int numberOfGuests = reservation.getNumberOfSeats();
