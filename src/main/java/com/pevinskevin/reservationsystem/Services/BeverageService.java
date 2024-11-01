@@ -17,4 +17,8 @@ public class BeverageService {
         return beverageRepository.getListOfAllBeverages();
     }
 
+    public void addBeverage(String name, int price) {
+        beverageRepository.addBeverage(name, price);
+    }
+
     }

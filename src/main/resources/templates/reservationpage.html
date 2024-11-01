@@ -63,13 +63,17 @@
     </div>
 
     <div class="bookingform">
+        <input type="hidden" th:field="*{celebration}" value="false"/>
+
         <label for="celebration">Celebration:</label>
-        <input th:field="*{celebration}" type="checkbox" id="celebration" name="celebration"/> <br> <br>
+        <input th:field="*{celebration}" type="checkbox" id="celebration" value="true"/> <br><br>
     </div>
 
     <div class="bookingform">
+        <input type="hidden" th:field="*{birthday}" value="false"/>
+
         <label for="birthday">Birthday:</label>
-        <input th:field="*{birthday}" type="checkbox" id="birthday" name="birthday"/> <br> <br>
+        <input th:field="*{birthday}" type="checkbox" id="birthday" value="true"/> <br><br>
     </div>
 
     <div class="bookingform">

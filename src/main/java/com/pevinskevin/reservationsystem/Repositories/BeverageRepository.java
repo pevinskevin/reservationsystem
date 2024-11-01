@@ -18,4 +18,9 @@ public class BeverageRepository {
         String query = "SELECT * FROM beverage";
         return jdbcTemplate.query(query, new BeanPropertyRowMapper<>(Beverage.class));
     }
+
+    public void addBeverage(String name, int price){
+        String query = "INSERT INTO beverage (name, price) VALUES (?, ?)";
+        jdbcTemplate.update(query, name, price);
+    }
 }
