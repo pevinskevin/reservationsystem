@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div th:each="beverage : ${listOfBeverages}" style="border: 1px solid black; padding: 10px; margin-bottom: 10px;">
+    <p>Name: <span th:text="${beverage.getName()}"></span></p>
+    <p>Price: <span th:text="${beverage.getPrice()}"></span></p>
+    <td>
+        <form class="buttonform" th:action="@{'/'+ ${adminUrl} + '/editbeverage'}" th:object="${reservation}" method="post">
+            <button type="submit">Edit Beverage</button>
+        </form>
+    </td>
+    <td>
+        <form class="buttonform" th:action="@{'/'+ ${adminUrl} + '/deletebeverage'}" th:object="${reservation}" method="post">
+            <button type="submit">Delete Beverage</button>
+        </form>
+    </td>
+</div>
+
+<td>
+    <form class="buttonform" th:action="@{'/'+ ${adminUrl} + '/postnewbeverage'}" th:object="${reservation}" method="post">
+        <button type="submit">Create New Beverage</button>
+    </form>
+</td>
+
+
+
+</body>
+</html>
