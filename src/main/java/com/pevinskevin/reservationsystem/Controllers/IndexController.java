@@ -1,7 +1,7 @@
 package com.pevinskevin.reservationsystem.Controllers;
 
 import com.pevinskevin.reservationsystem.Models.Admin;
-import com.pevinskevin.reservationsystem.Services.AdminServices;
+import com.pevinskevin.reservationsystem.Services.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class IndexController {
 
     @Autowired
-    AdminServices adminServices;
+    AdminService adminService;
 
     @GetMapping("/")
     public String displayIndex(Model model){
@@ -26,7 +26,7 @@ public class IndexController {
     public String redirectAdminPage(@ModelAttribute("admin") Admin admin,
                                     Model model){
 
-        return "redirect:/" + adminServices.checkUserNamePasswordMatch(admin.getUserName(), admin.getPassword());
+        return "redirect:/" + adminService.checkUserNamePasswordMatch(admin.getUserName(), admin.getPassword());
     }
 
     @PostMapping("/booking")

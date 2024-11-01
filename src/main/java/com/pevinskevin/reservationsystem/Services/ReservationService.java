@@ -62,4 +62,8 @@ public class ReservationService {
     public List<Integer> getListOfAssignedTablesWithIdList(List<Integer> tableIdList) {
         return reservationRepository.getListOfAssignedTablesWithIdList(tableIdList);
     }
+
+    public int getReservationIdUsingReservationUrl(String reservationUrl){
+        return reservationRepository.getReservationIdUsingReservationUrl(reservationUrl);
+    }
 }

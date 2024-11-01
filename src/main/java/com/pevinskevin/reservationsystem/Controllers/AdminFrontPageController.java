@@ -1,6 +1,6 @@
 package com.pevinskevin.reservationsystem.Controllers;
 
-import com.pevinskevin.reservationsystem.Services.AdminServices;
+import com.pevinskevin.reservationsystem.Services.AdminService;
 import com.pevinskevin.reservationsystem.Services.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +16,7 @@ import java.util.List;
 public class AdminFrontPageController {
 
     @Autowired
-    AdminServices adminServices;
+    AdminService adminService;
     @Autowired
     ReservationService reservationService;
 
@@ -29,7 +29,7 @@ public class AdminFrontPageController {
         //When a booking has seating for all guests, it's not available in the list.
         //Potentially add a calendar that displays all bookings in a calendar grid format?
         List<Integer> listofIds = reservationService.getReservationsWithoutAllSeatsCovered();
-        model.addAttribute("reservation", adminServices.getAllReservations(listofIds));
+        model.addAttribute("reservation", adminService.getAllReservations(listofIds));
 
         //Display unassigned seats
         //1. Query for reservation ID in cafe_table_reservation.

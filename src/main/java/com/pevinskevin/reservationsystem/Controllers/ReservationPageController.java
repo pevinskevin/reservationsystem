@@ -105,7 +105,7 @@ public class ReservationPageController {
                 String reservationUrl = reservationService.createReservation(reservation);
                 //Get the ID for the newly created reservation.
                 //Use the ID for creating a new beverage reservation.
-                return "redirect:/reservation/" + reservationUrl;
+                return "redirect:/beveragereservation/" + reservationUrl;
             }
             if (totalAvailableSeats < 0) {return "redirect:/reservationdenied/" + 0; }
             return "redirect:/reservationdenied/" + totalAvailableSeats;

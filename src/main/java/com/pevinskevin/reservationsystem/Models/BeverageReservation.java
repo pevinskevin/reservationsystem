@@ -1,11 +1,15 @@
 package com.pevinskevin.reservationsystem.Models;
 
+import java.util.Map;
+
 public class BeverageReservation {
     private int id;
     private int reservationId;
     private int beverageId;
     private int quantity;
     private Beverage beverages;
+    private Map<Integer, Integer> beverageQuantities;
+
 
     public int getId() {
         return id;
@@ -45,5 +49,13 @@ public class BeverageReservation {
 
     public void setBeverages(Beverage beverages) {
         this.beverages = beverages;
+    }
+
+    public Map<Integer, Integer> getBeverageQuantities() {
+        return beverageQuantities;
+    }
+
+    public void setBeverageQuantities(Map<Integer, Integer> beverageQuantities) {
+        this.beverageQuantities = beverageQuantities;
     }
 }

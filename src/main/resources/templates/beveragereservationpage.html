@@ -2,84 +2,35 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <title>Beverage Reservation</title>
 </head>
 <body>
 
-<form th:action="@{'/reservation'}" th:object="${reservation}" method="post">
+<p>Forudbestilling af drikkevarer</p>
 
-  <div class="bookingform">
-    <label for="name">Name:</label>
-    <input th:field="*{name}" type="text" id="name" name="name"/>
-    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</span>
-    <br> <br>
-  </div>
+<form th:action="@{'/beveragereservation/' + ${reservationUrl}}" th:object="${BeverageReservation}" method="post">
+  <table>
+    <tr>
+      <th>Beverage Name</th>
+      <th>Price</th>
+      <th>Quantity</th>
+    </tr>
+    <tr th:each="beverage, iterStat : ${listOfBeverages}">
+      <td th:text="${beverage.name}"></td>
+      <td th:text="${beverage.price}"></td>
+      <td>
+        <input type="hidden" th:name="beverageIds" th:value="${beverage.id}" />
+        <select th:name="quantities" th:value="0">
+          <option th:each="i : ${#numbers.sequence(0, 23)}" th:value="${i}" th:text="${i}"></option>
+        </select>
+      </td>
+    </tr>
+  </table>
+  <input type="submit" value="Submit pre-order">
+</form>
 
-  <div class="bookingform">
-    <label for="email">Email:</label>
-    <input th:field="*{email}" type="text" id="email" name="Wish name"/>
-    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</span>
-    <br> <br>
-  </div>
-
-  <div class="bookingform">
-    <label for="companyName">Company name:</label>
-    <input th:field="*{companyName}" type="text" id="companyName" name="companyName"/> <br> <br>
-  </div>
-
-  <div class="bookingform">
-    <label for="phoneNumber">Phone number:</label>
-    <input th:field="*{phoneNumber}" type="number" id="phoneNumber" name="phoneNumber"/>
-    <span th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}">Phone Number Error</span>
-    <br> <br>
-  </div>
-
-  <div class="bookingform">
-    <label for="numberOfSeats">Number of attending guests:</label>
-    <input th:field="*{numberOfSeats}" type="number" id="numberOfSeats" name="numberOfSeats" th:attr="min=${minNumberOfGuests}"/>
-    <span th:if="${#fields.hasErrors('numberOfSeats')}" th:errors="*{numberOfSeats}">Number of Attending Guests Error</span>
-    <br> <br>
-  </div>
-
-  <div class="bookingform">
-    <label for="reservationDate">reservationDate:</label>
-    <input th:field="*{reservationDate}" type="date" id="reservationDate" name="reservationDate" th:attr="min=${minDate}" />
-    <span th:if="${#fields.hasErrors('reservationDate')}" th:errors="*{reservationDate}">Reservation Date Error</span>
-    <br> <br>
-  </div>
-
-  <div class="bookingform">
-    <label for="time">Time:</label>
-    <input th:field="*{time}" type="time" id="time" name="time" th:attr="min=${minTime},max=${maxTime},step='900'" />
-    <span th:if="${#fields.hasErrors('time')}" th:errors="*{time}">Time Error</span>
-    <br> <br>
-  </div>
-
-  <div class="bookingform">
-    <label for="durationInHours">Duration:</label>
-    <input th:field="*{durationInHours}" type="number" id="durationInHours" name="duration"/>
-    <span th:if="${#fields.hasErrors('durationInHours')}" th:errors="*{durationInHours}">Duration Error</span>
-    <br> <br>
-  </div>
-
-  <div class="bookingform">
-    <label for="celebration">Celebration:</label>
-    <input th:field="*{celebration}" type="checkbox" id="celebration" name="celebration"/> <br> <br>
-  </div>
-
-  <div class="bookingform">
-    <label for="birthday">Birthday:</label>
-    <input th:field="*{birthday}" type="checkbox" id="birthday" name="birthday"/> <br> <br>
-  </div>
-
-  <div class="bookingform">
-    <label for="comments">Comments:</label>
-    <textarea th:field="*{comments}" id="comments" name="comments" rows="4" cols="50"/> </textarea> <br> <br>
-  </div>
-
-
-
-  <input type="submit" value="Submit Wish">
+<form th:action="@{'/nobeveragereservation/' + ${reservationUrl}}" method="post">
+  <input type="submit" value="I do not wish to pre-order drinks">
 </form>
 
 </body>
