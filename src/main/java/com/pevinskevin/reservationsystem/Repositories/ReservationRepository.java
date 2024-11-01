@@ -70,6 +70,11 @@ public class ReservationRepository {
         return url;
     }
 
+    public int getReservationIdUsingReservationUrl(String url){
+        String query = "SELECT id FROM reservation WHERE url = ?";
+        return jdbcTemplate.queryForObject(query, new Object[]{url}, Integer.class);
+    }
+
     public List<Integer> getReservationIdsNeedingTables() {
         String query = "SELECT reservation.id, reservation.number_of_seats " +
                 "FROM reservation " +

@@ -1,6 +1,7 @@
 package com.pevinskevin.reservationsystem.Controllers;
 
 import com.pevinskevin.reservationsystem.Models.Beverage;
+import com.pevinskevin.reservationsystem.Models.BeverageReservation;
 import com.pevinskevin.reservationsystem.Models.Reservation;
 import com.pevinskevin.reservationsystem.Services.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,7 @@ public class ReservationPageController {
         model.addAttribute("maxTime", maxTime);
 
         model.addAttribute("beverage", new Beverage());
-
+        model.addAttribute("beverageReservation", new BeverageReservation());
         model.addAttribute("reservation", new Reservation());
         return "reservationpage";
     }
@@ -47,6 +48,8 @@ public class ReservationPageController {
 
     @PostMapping("/reservation")
     public String createBooking(@ModelAttribute("reservation") Reservation reservation,
+                                @ModelAttribute("beverage") Beverage beverage,
+                                @ModelAttribute("beverageReservation") BeverageReservation beverageReservation,
                                 BindingResult result,
                                 Model model) {
 
@@ -100,6 +103,8 @@ public class ReservationPageController {
             int numberOfGuests = reservation.getNumberOfSeats();
             if (totalAvailableSeats >= numberOfGuests) {
                 String reservationUrl = reservationService.createReservation(reservation);
+                //Get the ID for the newly created reservation.
+                //Use the ID for creating a new beverage reservation.
                 return "redirect:/reservation/" + reservationUrl;
             }
             if (totalAvailableSeats < 0) {return "redirect:/reservationdenied/" + 0; }
