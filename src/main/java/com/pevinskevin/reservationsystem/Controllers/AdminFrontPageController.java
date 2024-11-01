@@ -38,8 +38,6 @@ public class AdminFrontPageController {
         List<Integer> sumOfAssignedSeats = reservationService.getListOfAssignedTablesWithIdList(listofIds);
         model.addAttribute("sumOfAssignedSeats", sumOfAssignedSeats);
 
-
-
         return "adminview";
     }
 
@@ -49,6 +47,20 @@ public class AdminFrontPageController {
                                            @RequestParam("reservationUrl") String reservationUrl){
 
         return "redirect:/{adminUrl}/" + reservationUrl;
+    }
+
+    @PostMapping("/{adminUrl}/deletebooking")
+    public String deleteBooking(@PathVariable String adminUrl,
+                                           @RequestParam("reservationUrl") String reservationUrl){
+
+        reservationService.deleteBookingUsingBookingUrl(reservationUrl);
+        return "redirect:/{adminUrl}";
+    }
+
+    @PostMapping("/{adminUrl}/editbooking")
+    public String editBooking(@PathVariable String adminUrl,
+                              @RequestParam("reservationUrl") String reservationUrl){
+        return "redirect:/{adminUrl}/editreservation/" + reservationUrl;
     }
 
 }

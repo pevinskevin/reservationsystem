@@ -17,8 +17,8 @@ public class Reservation {
     private LocalDate reservationDate;
     private LocalTime time;
     private int durationInHours;
-    private Boolean celebration;
-    private Boolean birthday;
+    private String celebration;
+    private String birthday;
     private String comments;
     private String url;
     private Set<CafeTable> cafeTables;
@@ -96,19 +96,19 @@ public class Reservation {
         this.durationInHours = durationInHours;
     }
 
-    public Boolean getCelebration() {
+    public String getCelebration() {
         return celebration;
     }
 
-    public void setCelebration(Boolean celebration) {
+    public void setCelebration(String celebration) {
         this.celebration = celebration;
     }
 
-    public Boolean getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Boolean birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 

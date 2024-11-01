@@ -22,6 +22,20 @@
             <input type="hidden" name="reservationUrl" th:value="${reservation.url}" />
         </form>
     </td>
+
+    <td>
+        <form class="buttonform" th:action="@{'/'+ ${adminUrl} + '/deletebooking'}" th:object="${reservation}" method="post">
+            <button type="submit">Delete Booking</button>
+            <input type="hidden" name="reservationUrl" th:value="${reservation.url}" />
+        </form>
+    </td>
+
+    <td>
+        <form class="buttonform" th:action="@{'/'+ ${adminUrl} + '/editbooking'}" th:object="${reservation}" method="post">
+            <button type="submit">Edit Booking</button>
+            <input type="hidden" name="reservationUrl" th:value="${reservation.url}" />
+        </form>
+    </td>
     <br> <br> <br>
 </tr>
 </body>

@@ -37,7 +37,8 @@ CREATE TABLE cafe_table_reservation (
                                         `id` INT AUTO_INCREMENT PRIMARY KEY,
                                         `reservation_id` INT,
                                         `cafe_table_id` INT,
-                                        FOREIGN KEY (`reservation_id`) REFERENCES `reservation`(`id`),
+                                        FOREIGN KEY (`reservation_id`) REFERENCES `reservation`(`id`)
+                                            ON DELETE CASCADE,
                                         FOREIGN KEY (`cafe_table_id`) REFERENCES `cafe_table`(`id`)
                                             ON DELETE CASCADE
 );
@@ -47,7 +48,8 @@ CREATE TABLE beverage_reservation (
                                       `reservation_id` INT,
                                       `beverage_id` INT,
                                       `quantity` int NOT NULL,
-                                      FOREIGN KEY (`reservation_id`) REFERENCES `reservation`(`id`),
+                                      FOREIGN KEY (`reservation_id`) REFERENCES `reservation`(`id`)
+                                          ON DELETE CASCADE,
                                       FOREIGN KEY (`beverage_id`) REFERENCES `beverage`(`id`)
                                           ON DELETE CASCADE
 );

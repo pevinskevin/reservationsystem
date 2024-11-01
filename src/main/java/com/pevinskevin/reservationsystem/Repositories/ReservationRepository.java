@@ -129,4 +129,14 @@ public class ReservationRepository {
         return resultList;
     }
 
+    public void deleteBookingUsingBookingUrl(String reservationUrl){
+        String query = "DELETE FROM reservation WHERE url = ?";
+        jdbcTemplate.update(query, reservationUrl);
+    }
+
+    public void updateReservation(Reservation reservation, String reservationUrl){
+        String query = "UPDATE reservation SET name = ?, email = ?, company_name = ?, phone_number = ?, number_of_seats = ?, reservation_date = ?, time = ?, duration_in_hours = ?, celebration = ?, birthday = ?, comments = ?, url = ? WHERE url = ?";
+        jdbcTemplate.update(query, reservation.getName(), reservation.getEmail(), reservation.getCompanyName(), reservation.getPhoneNumber(), reservation.getNumberOfSeats(), reservation.getReservationDate(), reservation.getTime(), reservation.getDurationInHours(), reservation.getCelebration(), reservation.getBirthday(), reservation.getComments(), reservationUrl, reservationUrl);
+    }
+
 }

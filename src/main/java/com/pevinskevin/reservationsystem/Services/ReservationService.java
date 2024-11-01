@@ -66,4 +66,12 @@ public class ReservationService {
     public int getReservationIdUsingReservationUrl(String reservationUrl){
         return reservationRepository.getReservationIdUsingReservationUrl(reservationUrl);
     }
+
+    public void deleteBookingUsingBookingUrl(String reservationUrl){
+        reservationRepository.deleteBookingUsingBookingUrl(reservationUrl);
+    }
+
+    public void updateReservation(Reservation reservation, String reservationUrl){
+        reservationRepository.updateReservation(reservation, reservationUrl);
+    }
 }

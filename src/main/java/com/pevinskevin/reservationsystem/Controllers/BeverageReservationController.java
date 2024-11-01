@@ -55,10 +55,6 @@ public class BeverageReservationController {
                 beverageReservationService.createBeverageReservation(reservationId, beverageId, quantity);
             }
         }
-
-
-
-
         return "redirect:/reservation/" + reservationUrl;
     }
 

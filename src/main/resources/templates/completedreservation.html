@@ -16,7 +16,10 @@
 <p>Time: <span th:text="${reservation.time}"></span></p>
 <p>Duration (hours): <span th:text="${reservation.durationInHours}"></span></p>
 <p>Comments: <span th:text="${reservation.comments}"></span></p>
-
-
+<p>Forudbestilte drikkevarer</p>
+<div th:each="beveragereservation : ${listOfBeverageReservations}">
+    <p>Beverage: <span th:text="${beverageReservation.beverageId}"></span></p>
+    <p>Beverage: <span th:text="${beverageReservation.quantity}"></span></p>
+</div>
 </body>
 </html>
