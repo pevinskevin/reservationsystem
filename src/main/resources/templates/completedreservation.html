@@ -2,24 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Reservation Details</title>
+    <link rel="stylesheet" th:href="@{/resources/static/stylesheet.css}">
 </head>
 <body>
 
-<h2>Reservation Details</h2>
-<p>Name: <span th:text="${reservation.name}"></span></p>
-<p>Email: <span th:text="${reservation.email}"></span></p>
-<p>Company Name: <span th:text="${reservation.companyName}"></span></p>
-<p>Phone Number: <span th:text="${reservation.phoneNumber}"></span></p>
-<p>Number of Seats: <span th:text="${reservation.numberOfSeats}"></span></p>
-<p>Reservation Date: <span th:text="${reservation.reservationDate}"></span></p>
-<p>Time: <span th:text="${reservation.time}"></span></p>
-<p>Duration (hours): <span th:text="${reservation.durationInHours}"></span></p>
-<p>Comments: <span th:text="${reservation.comments}"></span></p>
-<p>Forudbestilte drikkevarer</p>
-<div th:each="beveragereservation : ${listOfBeverageReservations}">
-    <p>Beverage: <span th:text="${beverageReservation.beverageId}"></span></p>
-    <p>Beverage: <span th:text="${beverageReservation.quantity}"></span></p>
+<div class="reservation-details-container">
+    <h2>Reservation Details</h2>
+
+    <div class="reservation-info">
+        <p><strong>Name:</strong> <span th:text="${reservation.name}"></span></p>
+        <p><strong>Email:</strong> <span th:text="${reservation.email}"></span></p>
+        <p><strong>Company Name:</strong> <span th:text="${reservation.companyName}"></span></p>
+        <p><strong>Phone Number:</strong> <span th:text="${reservation.phoneNumber}"></span></p>
+        <p><strong>Number of Seats:</strong> <span th:text="${reservation.numberOfSeats}"></span></p>
+        <p><strong>Reservation Date:</strong> <span th:text="${reservation.reservationDate}"></span></p>
+        <p><strong>Time:</strong> <span th:text="${reservation.time}"></span></p>
+        <p><strong>Duration (hours):</strong> <span th:text="${reservation.durationInHours}"></span></p>
+        <p><strong>Comments:</strong> <span th:text="${reservation.comments}"></span></p>
+    </div>
+
+    <h3>Pre-ordered Beverages</h3>
+    <div class="beverage-list">
+        <div th:each="beverageReservation : ${listOfBeverageReservations}" class="beverage-item">
+            <p><strong>Beverage:</strong> <span th:text="${beverageReservation.beverageId}"></span></p>
+            <p><strong>Quantity:</strong> <span th:text="${beverageReservation.quantity}"></span></p>
+        </div>
+    </div>
 </div>
+
 </body>
 </html>
