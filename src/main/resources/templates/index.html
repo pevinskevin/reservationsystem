@@ -5,33 +5,82 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" th:href="@{/resources/static/css/styles.css}">
+    <link rel="stylesheet" href="/stylesheet.css">
 </head>
 
 <!-- Page content -->
 <body>
-<div class="centerDiv">
-    <form action="/booking" method="post" class="centerbutton">
-        <button type="submit">Click to create a booking</button>
-        <input type="hidden" name="data" value="additionalData"/>  <!-- Hidden input field -->
-    </form>
-</div>
-
-<br><br><br>
-
-<form th:action="@{'/adminpage'}" th:object="${admin}" method="post">
-
-    <div class="loginform">
-        <label for="username">User name:</label>
-        <input th:field="*{userName}" type="text" id="username" name="user"/> <br> <br>
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Welcome to Café Bliss</h1>
+        <p>Your cozy corner for great coffee, good vibes, and unforgettable moments.</p>
+        <a href="#booking" class="btn">Book a Table</a>
     </div>
+</section>
 
-    <div class="loginform">
-        <label for="password">Password:</label>
-        <input th:field="*{password}" type="password" id="password" name="Wish name"/> <br> <br>
+<!-- About Section -->
+<section class="about" id="about">
+    <div class="container">
+        <h2>About Us</h2>
+        <p>At Café Bliss, we believe in the perfect blend of quality, ambiance, and hospitality. Our coffee beans are ethically sourced, and every cup is crafted with passion. Come in, take a seat, and experience our delightful menu filled with locally inspired treats and fresh brews.</p>
     </div>
-    <input type="submit" value="Login">
-    </form>
+</section>
+
+<!-- Booking Section -->
+<section class="booking" id="booking">
+    <div class="container">
+        <h2>Book a Table</h2>
+        <form action="/book" method="post" class="booking-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required>
+
+            <label for="time">Time:</label>
+            <input type="time" id="time" name="time" required>
+
+            <label for="guests">Number of Guests:</label>
+            <input type="number" id="guests" name="guests" min="1" max="10" required>
+
+            <button type="submit" class="btn">Reserve Now</button>
+        </form>
+    </div>
+</section>
+
+<!-- Quick Booking Button -->
+<section class="quick-booking">
+    <div class="centerDiv">
+        <form action="/booking" method="post" class="centerbutton">
+            <button type="submit">Click to create a booking</button>
+            <input type="hidden" name="data" value="additionalData"/>  <!-- Hidden input field -->
+        </form>
+    </div>
+</section>
+
+<!-- Admin Login Section -->
+<section class="admin-login" id="adminpage">
+    <div class="container">
+        <h2>Admin Login</h2>
+        <form th:action="@{'/adminpage'}" th:object="${admin}" method="post">
+            <div class="loginform">
+                <label for="username">User name:</label>
+                <input th:field="*{userName}" type="text" id="username" name="user"/> <br> <br>
+            </div>
+
+            <div class="loginform">
+                <label for="password">Password:</label>
+                <input th:field="*{password}" type="password" id="password" name="password"/> <br> <br>
+            </div>
+            <input type="submit" value="Login">
+        </form>
+    </div>
+</section>
+
 </body>
 
 </html>

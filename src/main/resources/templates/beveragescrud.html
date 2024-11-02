@@ -10,19 +10,21 @@
     <p>Name: <span th:text="${beverage.getName()}"></span></p>
     <p>Price: <span th:text="${beverage.getPrice()}"></span></p>
     <td>
-        <form class="buttonform" th:action="@{'/'+ ${adminUrl} + '/editbeverage'}" th:object="${reservation}" method="post">
+        <form class="buttonform" th:action="@{'/'+ ${adminUrl} + '/editbeverage'}" method="post">
+            <input type="hidden" name="beverageid" th:value="${beverage.id}" />
             <button type="submit">Edit Beverage</button>
         </form>
     </td>
     <td>
-        <form class="buttonform" th:action="@{'/'+ ${adminUrl} + '/deletebeverage'}" th:object="${reservation}" method="post">
+        <form class="buttonform" th:action="@{'/'+ ${adminUrl} + '/deletebeverage'}" th:object="${beverage}" method="post">
+            <input type="hidden" name="beverageid" th:value="${beverage.id}" />
             <button type="submit">Delete Beverage</button>
         </form>
     </td>
 </div>
 
 <td>
-    <form class="buttonform" th:action="@{'/'+ ${adminUrl} + '/redirectnewbeverage'}" th:object="${reservation}" method="post">
+    <form class="buttonform" th:action="@{'/'+ ${adminUrl} + '/redirectnewbeverage'}" th:object="${beverage}" method="post">
         <button type="submit">Create New Beverage</button>
     </form>
 </td>

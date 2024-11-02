@@ -21,4 +21,16 @@ public class BeverageService {
         beverageRepository.addBeverage(name, price);
     }
 
+    public Beverage getBeverageUsingId(int id){
+        return beverageRepository.getBeverageUsingId(id);
+    }
+
+    public void updateBeverage(String name, int price, int id){
+        beverageRepository.updateBeverage(name, price, id);
+    }
+
+    public void deleteBeverage(int id){
+        beverageRepository.deleteBeverage(id);
+    }
+
     }

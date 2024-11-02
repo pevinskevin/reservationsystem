@@ -23,4 +23,19 @@ public class BeverageRepository {
         String query = "INSERT INTO beverage (name, price) VALUES (?, ?)";
         jdbcTemplate.update(query, name, price);
     }
+
+    public Beverage getBeverageUsingId(int id) {
+        String query = "SELECT * FROM beverage WHERE id = ?";
+        return jdbcTemplate.queryForObject(query, new BeanPropertyRowMapper<>(Beverage.class), id);
+    }
+
+    public void updateBeverage(String name, int price, int id){
+        String query = "UPDATE beverage SET name = ?,  price = ? where id = ?";
+        jdbcTemplate.update(query, name, price, id);
+    }
+
+    public void deleteBeverage(int id){
+        String query = "DELETE FROM beverage WHERE id = ?";
+        jdbcTemplate.update(query, id);
+    }
 }

@@ -3,3 +3,102 @@
         justify-content: center;
         align-items: center;
 }
+
+/* General Styles */
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f7f2e7;
+    color: #333;
+}
+
+h1, h2 {
+    font-family: 'Playfair Display', serif;
+    color: #3e2723;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 40px 0;
+}
+
+.btn {
+    background-color: #6d4c41;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #5d4037;
+}
+
+/* Hero Section */
+.hero {
+    background-image: url('cafe-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+}
+
+.hero-content {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* About Section */
+.about {
+    background-color: #fff;
+    padding: 60px 0;
+    text-align: center;
+}
+
+/* Booking Section */
+.booking {
+    background-color: #f1ece4;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.booking-form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.booking-form label {
+    font-weight: bold;
+}
+
+.booking-form input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.booking-form button {
+    background-color: #6d4c41;
+    color: #fff;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.booking-form button:hover {
+    background-color: #5d4037;
+}

@@ -40,5 +40,12 @@
 
 
 </tr>
+
+<div>
+    <form class="buttonform" th:action="@{'/'+ ${adminUrl} + '/redirecttobeveragecrud'}" th:object="${reservation}" method="post">
+        <button type="submit">Beverage CRUD Page</button>
+    </form>
+</div>
+
 </body>
 </html>
