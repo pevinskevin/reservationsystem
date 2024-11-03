@@ -7,6 +7,8 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import java.time.LocalDate;
@@ -138,5 +140,12 @@ public class ReservationRepository {
         String query = "UPDATE reservation SET name = ?, email = ?, company_name = ?, phone_number = ?, number_of_seats = ?, reservation_date = ?, time = ?, duration_in_hours = ?, celebration = ?, birthday = ?, comments = ?, url = ? WHERE url = ?";
         jdbcTemplate.update(query, reservation.getName(), reservation.getEmail(), reservation.getCompanyName(), reservation.getPhoneNumber(), reservation.getNumberOfSeats(), reservation.getReservationDate(), reservation.getTime(), reservation.getDurationInHours(), reservation.getCelebration(), reservation.getBirthday(), reservation.getComments(), reservationUrl, reservationUrl);
     }
+
+    public List<Reservation> getAllUpcomingReservations() {
+        String today = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        String query = "SELECT * FROM reservation WHERE reservation_date >= ?";
+        return jdbcTemplate.query(query, new Object[]{today}, new BeanPropertyRowMapper<>(Reservation.class));
+    }
+
 
 }

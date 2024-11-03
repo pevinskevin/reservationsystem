@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="admin-container">
-    <h2>Reservations Overview</h2>
+    <h2>Overview of Reservations with Unassigned Seats</h2>
     <table class="reservations-table">
         <thead>
         <tr>
@@ -30,6 +30,47 @@
             <td th:text="${reservation.durationInHours}"></td>
             <td th:text="${reservation.numberOfSeats}"></td>
             <td th:text="${reservation.numberOfSeats - sumOfAssignedSeats[stat.index]}"></td>
+            <td class="action-buttons">
+                <form th:action="@{'/'+ ${adminUrl} + '/assigntable'}" th:object="${reservation}" method="post" class="inline-form">
+                    <button type="submit" class="btn">Assign Table</button>
+                    <input type="hidden" name="reservationUrl" th:value="${reservation.url}" />
+                </form>
+                <form th:action="@{'/'+ ${adminUrl} + '/deletebooking'}" th:object="${reservation}" method="post" class="inline-form">
+                    <button type="submit" class="btn btn-danger">Delete Booking</button>
+                    <input type="hidden" name="reservationUrl" th:value="${reservation.url}" />
+                </form>
+                <form th:action="@{'/'+ ${adminUrl} + '/editbooking'}" th:object="${reservation}" method="post" class="inline-form">
+                    <button type="submit" class="btn btn-secondary">Edit Booking</button>
+                    <input type="hidden" name="reservationUrl" th:value="${reservation.url}" />
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+
+    <h2>Reservations Overview</h2>
+    <table class="reservations-table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Company Name</th>
+            <th>Reservation Date</th>
+            <th>Time</th>
+            <th>Duration (Hours)</th>
+            <th>Number of Seats</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="reservation, stat : ${listOfUpcomingReservations}">
+            <td th:text="${reservation.name}"></td>
+            <td th:text="${reservation.companyName}"></td>
+            <td th:text="${reservation.reservationDate}"></td>
+            <td th:text="${reservation.time}"></td>
+            <td th:text="${reservation.durationInHours}"></td>
+            <td th:text="${reservation.numberOfSeats}"></td>
             <td class="action-buttons">
                 <form th:action="@{'/'+ ${adminUrl} + '/assigntable'}" th:object="${reservation}" method="post" class="inline-form">
                     <button type="submit" class="btn">Assign Table</button>

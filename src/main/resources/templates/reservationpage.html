@@ -2,15 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Edit Reservation</title>
+    <title>Booking Form</title>
+    <link rel="stylesheet" href="stylesheet.css">
     <link rel="stylesheet" th:href="@{/resources/static/stylesheet.css}">
+
 </head>
 <body>
 
 <section class="booking" id="booking">
     <div class="container">
-        <h2>Edit Reservation</h2>
-        <form th:action="@{'/'+ ${adminUrl} + '/editreservation/' + ${reservation.url}}" th:object="${reservation}" method="post" class="booking-form">
+        <h2>Book a Table</h2>
+        <form th:action="@{'/reservation'}" th:object="${reservation}" method="post" class="booking-form">
 
             <div class="form-group">
                 <label for="name">Name:</label>
@@ -76,7 +78,7 @@
                 <textarea th:field="*{comments}" id="comments" name="comments" rows="4" cols="50" class="input-field"></textarea>
             </div>
 
-            <button type="submit" class="btn">Submit Edit</button>
+            <button type="submit" class="btn">Submit Booking</button>
         </form>
     </div>
 </section>

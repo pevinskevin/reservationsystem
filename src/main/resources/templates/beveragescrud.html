@@ -2,36 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Beverage Management</title>
     <link rel="stylesheet" th:href="@{/resources/static/stylesheet.css}">
-
 </head>
 <body>
 
-<div th:each="beverage : ${listOfBeverages}" style="border: 1px solid black; padding: 10px; margin-bottom: 10px;">
-    <p>Name: <span th:text="${beverage.getName()}"></span></p>
-    <p>Price: <span th:text="${beverage.getPrice()}"></span></p>
-    <td>
-        <form class="buttonform" th:action="@{'/'+ ${adminUrl} + '/editbeverage'}" method="post">
-            <input type="hidden" name="beverageid" th:value="${beverage.id}" />
-            <button type="submit">Edit Beverage</button>
-        </form>
-    </td>
-    <td>
-        <form class="buttonform" th:action="@{'/'+ ${adminUrl} + '/deletebeverage'}" th:object="${beverage}" method="post">
-            <input type="hidden" name="beverageid" th:value="${beverage.id}" />
-            <button type="submit">Delete Beverage</button>
-        </form>
-    </td>
-</div>
+<section class="beverage-management" id="beverage-management">
+    <div class="container">
+        <h2>Beverage Management</h2>
 
-<td>
-    <form class="buttonform" th:action="@{'/'+ ${adminUrl} + '/redirectnewbeverage'}" th:object="${beverage}" method="post">
-        <button type="submit">Create New Beverage</button>
-    </form>
-</td>
+        <div class="beverage-card-container">
+            <div class="beverage-card" th:each="beverage : ${listOfBeverages}">
+                <div class="beverage-details">
+                    <p><strong>Name:</strong> <span th:text="${beverage.getName()}"></span></p>
+                    <p><strong>Price:</strong> <span th:text="${beverage.getPrice()}"></span></p>
+                </div>
+                <div class="action-buttons">
+                    <form class="buttonform" th:action="@{'/'+ ${adminUrl} + '/editbeverage'}" method="post">
+                        <input type="hidden" name="beverageid" th:value="${beverage.id}" />
+                        <button type="submit" class="btn btn-secondary">Edit Beverage</button>
+                    </form>
+                    <form class="buttonform" th:action="@{'/'+ ${adminUrl} + '/deletebeverage'}" th:object="${beverage}" method="post">
+                        <input type="hidden" name="beverageid" th:value="${beverage.id}" />
+                        <button type="submit" class="btn btn-danger">Delete Beverage</button>
+                    </form>
+                </div>
+            </div>
+        </div>
 
-
+        <div class="centerDiv">
+            <form class="buttonform" th:action="@{'/'+ ${adminUrl} + '/redirectnewbeverage'}" method="post">
+                <button type="submit" class="btn">Create New Beverage</button>
+            </form>
+        </div>
+    </div>
+</section>
 
 </body>
 </html>

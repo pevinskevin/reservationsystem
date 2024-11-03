@@ -38,6 +38,9 @@ public class AdminFrontPageController {
         List<Integer> sumOfAssignedSeats = reservationService.getListOfAssignedTablesWithIdList(listofIds);
         model.addAttribute("sumOfAssignedSeats", sumOfAssignedSeats);
 
+        //For separate showing of all upcoming reservations.
+        model.addAttribute("listOfUpcomingReservations", reservationService.getAllUpcomingReservations());
+
         return "adminview";
     }
 

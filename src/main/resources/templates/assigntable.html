@@ -2,39 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Available Tables</title>
     <link rel="stylesheet" th:href="@{/resources/static/stylesheet.css}">
-
 </head>
 <body>
 
-<tr id="block" th:each="cafetable : ${availableTables}">
-    <td th:text="'Table ID: ' + ${cafetable.id}"></td>
-    <td th:text="' - Seat Capacity: ' + ${cafetable.seatCapacity}"></td>
-    <td th:text="' - Table number: ' + ${cafetable.tableNumber}"></td>
-    <td>
-        <form class="buttonform" th:action="@{'/'+ ${adminUrl} + '/' + ${reservationUrl} }" th:object="${cafetable}" method="post">
-            <button type="submit">Assign table</button>
-            <input type="hidden" name="cafeTableId" th:value="${cafetable.id}"/>
-            <!-- Optional hidden input field -->
-        </form>
-    </td>
-    <br> <br> <br>
-    <!--  <td>
-          <form class="buttonform" th:action="@{'/' + ${wishListStringId} + '/editwish'}" method="post">
-              <button type="submit">Edit Wish</button>
-               Optional hidden input field
-              <input type="hidden" name="wishIntegerId" th:value="${wish.id}" />
-          </form>
-      </td>
-      <td>
-          <form class="buttonform" th:action="@{'/' + ${wishListStringId} + '/deletewish'}" method="post">
-              <button type="submit">Delete Wish</button>
-               Optional hidden input field
-              <input type="hidden" name="wishIntegerId" th:value="${wish.id}" />
-          </form>
-      </td> -->
-</tr>
+<section class="cafe-tables" id="cafe-tables">
+    <div class="container">
+        <h2>Available Tables</h2>
+        <div class="cafe-table-container">
+            <div class="cafe-table-card" th:each="cafetable : ${availableTables}">
+                <div class="table-details">
+                    <p><strong>Table ID:</strong> <span th:text="${cafetable.id}"></span></p>
+                    <p><strong>Seat Capacity:</strong> <span th:text="${cafetable.seatCapacity}"></span></p>
+                    <p><strong>Table Number:</strong> <span th:text="${cafetable.tableNumber}"></span></p>
+                </div>
+                <div class="action-buttons">
+                    <form class="buttonform" th:action="@{'/'+ ${adminUrl} + '/' + ${reservationUrl} }" th:object="${cafetable}" method="post">
+                        <button type="submit" class="btn">Assign Table</button>
+                        <input type="hidden" name="cafeTableId" th:value="${cafetable.id}"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 </body>
 </html>

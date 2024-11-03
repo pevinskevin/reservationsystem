@@ -74,4 +74,8 @@ public class ReservationService {
     public void updateReservation(Reservation reservation, String reservationUrl){
         reservationRepository.updateReservation(reservation, reservationUrl);
     }
+
+    public List<Reservation> getAllUpcomingReservations(){
+        return reservationRepository.getAllUpcomingReservations();
+    }
 }
