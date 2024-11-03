@@ -1,6 +1,9 @@
 package com.pevinskevin.reservationsystem.Controllers;
 
+import com.pevinskevin.reservationsystem.Models.BeverageReservation;
+import com.pevinskevin.reservationsystem.Models.Reservation;
 import com.pevinskevin.reservationsystem.Services.AdminService;
+import com.pevinskevin.reservationsystem.Services.BeverageReservationService;
 import com.pevinskevin.reservationsystem.Services.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,7 +13,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class AdminFrontPageController {
@@ -19,6 +25,8 @@ public class AdminFrontPageController {
     AdminService adminService;
     @Autowired
     ReservationService reservationService;
+    @Autowired
+    BeverageReservationService beverageReservationService;
 
     @GetMapping("/{adminUrl}")
     public String diplayAdminFrontPage(Model model,
@@ -40,6 +48,59 @@ public class AdminFrontPageController {
 
         //For separate showing of all upcoming reservations.
         model.addAttribute("listOfUpcomingReservations", reservationService.getAllUpcomingReservations());
+
+        //1. Get list of all upcoming IDs.
+        //2. Use the IDs to fetch a list of beverage reservations.
+        //3. Map the beverage reservations to their respective reservation IDs
+        //4. Fetch each beverage name and then display each beverage reservation to relevant reservation.
+
+        List<Reservation> reservations = reservationService.getAllUpcomingReservations();
+
+
+        //Creates list of reservation IDs
+        List<Integer> reservationIds = new ArrayList<>();
+        for ( int i = 0; i < reservations.size(); i++) {
+            Reservation reservation = reservations.get(i);
+            reservationIds.add(reservation.getId());
+        }
+
+        //Gets list of bev reservations using list of res. IDs
+        List<BeverageReservation> listOfBevReservationsUsingIds = new ArrayList<>();
+        for (int i = 0; i < reservationIds.size(); i++){
+            int reservationId = reservationIds.get(i);
+            listOfBevReservationsUsingIds.addAll(beverageReservationService.getListOfBeverageReservationsUsingReservationId(reservationId));
+        }
+
+        List<String> listOfBeverageNames = new ArrayList<>();
+        for (int i = 0; i < listOfBevReservationsUsingIds.size(); i++){
+            listOfBevReservationsUsingIds.get(i);
+        }
+
+        // Map to store reservation IDs and their associated list of beverage reservations
+        Map<Integer, List<BeverageReservation>> reservationToBeverageMap = new HashMap<>();
+        // Iterate over the list of BeverageReservation objects
+        for (BeverageReservation beverageReservation : listOfBevReservationsUsingIds) {
+            int reservationId = beverageReservation.getReservationId();
+            // Check if the reservation ID already exists in the map
+            if (!reservationToBeverageMap.containsKey(reservationId)) {
+                // If not, create a new list for this reservation ID
+                reservationToBeverageMap.put(reservationId, new ArrayList<>());
+            }
+            // Add the beverage reservation to the list for this reservation ID
+            reservationToBeverageMap.get(reservationId).add(beverageReservation);
+        }
+
+        for (Map.Entry<Integer, List<BeverageReservation>> entry : reservationToBeverageMap.entrySet()) {
+            System.out.println("Reservation ID: " + entry.getKey());
+            List<BeverageReservation> beverageReservations = entry.getValue();
+            for (BeverageReservation beverageReservation : beverageReservations) {
+                System.out.println("Beverage ID: " + beverageReservation.getBeverageId() + ", Quantity: " + beverageReservation.getQuantity());
+            }
+        }
+
+
+
+
 
         return "adminview";
     }

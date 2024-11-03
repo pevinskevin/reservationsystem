@@ -21,4 +21,5 @@ public class BeverageReservationService {
     public List<BeverageReservation> getListOfBeverageReservationsUsingReservationId(int reservationId){
         return beverageReservationRepository.getListOfBeverageReservationsUsingReservationId(reservationId);
     }
+
 }
