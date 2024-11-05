@@ -60,6 +60,7 @@
             <th>Time</th>
             <th>Duration (Hours)</th>
             <th>Number of Seats</th>
+            <th>Assigned Tables</th>
             <th>Pre-ordered Drinks</th>
             <th>Actions</th>
         </tr>
@@ -73,6 +74,14 @@
             <td th:text="${reservation.durationInHours}"></td>
             <td th:text="${reservation.numberOfSeats}"></td>
             <td>
+                <ul th:if="${tablesByReservation[reservation.id] != null}"
+                    th:each="table : ${tablesByReservation[reservation.id]}">
+                    <li>
+                        <span th:text="'Table ' + ${table.tableNumber}"></span>
+                    </li>
+                </ul>
+            </td>
+            <td>
                 <ul th:if="${drinksMap[reservation.id] != null}" th:each="drink : ${drinksMap[reservation.id]}">
                     <li>
                         <span th:text="${drink.name}"></span> x <span th:text="${drink.quantity}"></span>
@@ -80,10 +89,6 @@
                 </ul>
             </td>
             <td class="action-buttons">
-                <form th:action="@{'/'+ ${adminUrl} + '/assigntable'}" th:object="${reservation}" method="post" class="inline-form">
-                    <button type="submit" class="btn">Assign Table</button>
-                    <input type="hidden" name="reservationUrl" th:value="${reservation.url}" />
-                </form>
                 <form th:action="@{'/'+ ${adminUrl} + '/deletebooking'}" th:object="${reservation}" method="post" class="inline-form">
                     <button type="submit" class="btn btn-danger">Delete Booking</button>
                     <input type="hidden" name="reservationUrl" th:value="${reservation.url}" />

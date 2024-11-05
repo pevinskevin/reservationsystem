@@ -1,4 +1,5 @@
 package com.pevinskevin.reservationsystem.Services;
+import com.pevinskevin.reservationsystem.Models.AssignedTableHelper;
 import com.pevinskevin.reservationsystem.Models.BeverageReservation;
 import com.pevinskevin.reservationsystem.Models.Reservation;
 import com.pevinskevin.reservationsystem.Models.CafeTable;
@@ -8,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 @Service
@@ -77,5 +80,15 @@ public class ReservationService {
 
     public List<Reservation> getAllUpcomingReservations(){
         return reservationRepository.getAllUpcomingReservations();
+    }
+
+    public Map<Integer, List<AssignedTableHelper>> getTablesForReservations(List<Integer> reservationIds) {
+        Map<Integer, List<AssignedTableHelper>> tablesByReservation = new HashMap<>();
+
+        for (int reservationId : reservationIds) {
+            List<AssignedTableHelper> assignedTables = reservationRepository.getAssignedTablesByReservationId(reservationId);
+            tablesByReservation.put(reservationId, assignedTables);
+        }
+        return tablesByReservation;
     }
 }

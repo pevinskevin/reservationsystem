@@ -1,5 +1,6 @@
 package com.pevinskevin.reservationsystem.Controllers;
 
+import com.pevinskevin.reservationsystem.Models.AssignedTableHelper;
 import com.pevinskevin.reservationsystem.Models.BeverageHelper;
 import com.pevinskevin.reservationsystem.Models.Reservation;
 import com.pevinskevin.reservationsystem.Services.AdminService;
@@ -62,6 +63,15 @@ public class AdminFrontPageController {
             drinksMap.put(reservationId, preOrderedDrinks);
         }
         model.addAttribute("drinksMap", drinksMap);
+
+        List<Integer> reservationIds = new ArrayList<>();
+        for (int i = 0; i < reservations.size(); i++){
+            int id = reservations.get(i).getId();
+            reservationIds.add(id);
+        }
+        Map<Integer, List<AssignedTableHelper>> tablesByReservation = reservationService.getTablesForReservations(reservationIds);
+        model.addAttribute("tablesByReservation", tablesByReservation);
+
         return "adminview";
     }
 

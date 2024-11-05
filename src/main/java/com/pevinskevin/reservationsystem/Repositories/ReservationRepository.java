@@ -1,5 +1,6 @@
 package com.pevinskevin.reservationsystem.Repositories;
 
+import com.pevinskevin.reservationsystem.Models.AssignedTableHelper;
 import com.pevinskevin.reservationsystem.Models.Reservation;
 import com.pevinskevin.reservationsystem.Models.CafeTable;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -147,5 +148,19 @@ public class ReservationRepository {
         return jdbcTemplate.query(query, new Object[]{today}, new BeanPropertyRowMapper<>(Reservation.class));
     }
 
-
+    // In ReservationRepository.java
+    public List<AssignedTableHelper> getAssignedTablesByReservationId(int reservationId) {
+        String query = "SELECT r.id AS reservation_id, ct.table_number, ct.seat_capacity " +
+                "FROM cafe_table_reservation ctr " +
+                "JOIN reservation r ON ctr.reservation_id = r.id " +
+                "JOIN cafe_table ct ON ctr.cafe_table_id = ct.id " +
+                "WHERE r.id = ?";
+        return jdbcTemplate.query(query, new Object[]{reservationId}, (rs, rowNum) ->
+                new AssignedTableHelper(
+                        rs.getInt("reservation_id"),
+                        rs.getInt("table_number"),
+                        rs.getInt("seat_capacity")
+                )
+        );
+    }
 }
