@@ -92,4 +92,10 @@ public class AdminFrontPageController {
         return "redirect:/{adminUrl}/beveragescrud";
     }
 
+    @PostMapping("/{adminUrl}/editbeveragepreorder")
+    public String redirectToBevEditController(@PathVariable String adminUrl,
+                                              @RequestParam("reservationUrl") String reservationUrl){
+        return "redirect:/" + adminUrl + "/editbeveragepreorder/" + reservationUrl;
+    }
+
 }

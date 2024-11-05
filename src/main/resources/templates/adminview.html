@@ -92,6 +92,10 @@
                     <button type="submit" class="btn btn-secondary">Edit Booking</button>
                     <input type="hidden" name="reservationUrl" th:value="${reservation.url}" />
                 </form>
+                <form th:action="@{'/'+ ${adminUrl} + '/editbeveragepreorder'}" th:object="${reservation}" method="post" class="inline-form">
+                    <button type="submit" class="btn btn-secondary">Edit Beverage Pre-order</button>
+                    <input type="hidden" name="reservationUrl" th:value="${reservation.url}" />
+                </form>
             </td>
         </tr>
         </tbody>

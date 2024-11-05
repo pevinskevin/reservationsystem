@@ -2,6 +2,7 @@ package com.pevinskevin.reservationsystem.Services;
 
 import com.pevinskevin.reservationsystem.Models.BeverageHelper;
 import com.pevinskevin.reservationsystem.Models.BeverageReservation;
+import com.pevinskevin.reservationsystem.Models.EditBeverageHelper;
 import com.pevinskevin.reservationsystem.Repositories.BeverageReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,10 @@ public class BeverageReservationService {
 
     public List<BeverageHelper> getBeverageNamesAndQuantitiesByReservationId(int id){
         return beverageReservationRepository.getBeverageNamesAndQuantitiesByReservationId(id);
+    }
+
+    public List<EditBeverageHelper> editBeverageHelpers(int id){
+        return beverageReservationRepository.editBeverageHelpers(id);
     }
 
 }

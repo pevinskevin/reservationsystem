@@ -2,6 +2,7 @@ package com.pevinskevin.reservationsystem.Repositories;
 
 import com.pevinskevin.reservationsystem.Models.BeverageHelper;
 import com.pevinskevin.reservationsystem.Models.BeverageReservation;
+import com.pevinskevin.reservationsystem.Models.EditBeverageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -35,6 +36,16 @@ public class BeverageReservationRepository {
             String name = rs.getString("name");
             int quantity = rs.getInt("quantity");
             return new BeverageHelper(name, quantity);
+        });
+    }
+
+    public List<EditBeverageHelper> editBeverageHelpers(int id){
+        String query = "SELECT b.name, br.quantity, br.reservation_id FROM beverage_reservation br JOIN beverage b on br.beverage_id = b.id WHERE br.reservation_id = ?";
+        return jdbcTemplate.query(query, new Object[]{id}, (rs, rowNum) -> {
+            String name = rs.getString("name");
+            int quantity = rs.getInt("quantity");
+            int reservationId = rs.getInt("reservation_id");
+            return new EditBeverageHelper(reservationId, name, quantity);
         });
     }
 
