@@ -72,6 +72,13 @@
             <td th:text="${reservation.time}"></td>
             <td th:text="${reservation.durationInHours}"></td>
             <td th:text="${reservation.numberOfSeats}"></td>
+            <td>
+                <ul th:if="${drinksMap[reservation.id] != null}" th:each="drink : ${drinksMap[reservation.id]}">
+                    <li>
+                        <span th:text="${drink.name}"></span> x <span th:text="${drink.quantity}"></span>
+                    </li>
+                </ul>
+            </td>
             <td class="action-buttons">
                 <form th:action="@{'/'+ ${adminUrl} + '/assigntable'}" th:object="${reservation}" method="post" class="inline-form">
                     <button type="submit" class="btn">Assign Table</button>

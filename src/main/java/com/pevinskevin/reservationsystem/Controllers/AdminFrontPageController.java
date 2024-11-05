@@ -73,6 +73,8 @@ public class AdminFrontPageController {
             listOfUpcomingBeverageReservations.addAll(beverageReservationService.getListOfBeverageReservationsUsingReservationId(reservationId));
         }
 
+
+
         List<BeverageAndBevRevContainer> listOfUpcomingBeverageReservationsWithBeverageNames = new ArrayList<>();
         for (int i = 0; i < upcomingReservationIds.size(); i++){
             int reservationId = upcomingReservationIds.get(i);
@@ -80,6 +82,14 @@ public class AdminFrontPageController {
             List<BeverageHelper> beverageNameandQuantityList = beverageReservationService.getBeverageNamesAndQuantitiesByReservationId(reservationId);
             BeverageAndBevRevContainer beverageAndBevRevContainer = new BeverageAndBevRevContainer(beverageReservationList, beverageNameandQuantityList);
             listOfUpcomingBeverageReservationsWithBeverageNames.add(beverageAndBevRevContainer);
+        }
+
+        Map<Integer, List<BeverageHelper>> drinksMap = new HashMap<>();
+        // Populate the map with reservation IDs and their respective beverages
+        for (Reservation reservation : reservations) {
+            int reservationId = reservation.getId();
+            List<BeverageHelper> preOrderedDrinks = beverageReservationService.getBeverageNamesAndQuantitiesByReservationId(reservationId);
+            drinksMap.put(reservationId, preOrderedDrinks);
         }
 
         // Map to store reservation IDs and their associated list of beverage reservations
@@ -95,6 +105,13 @@ public class AdminFrontPageController {
             // Add the beverage reservation to the list for this reservation ID
             resToBevMap.get(reservationId).add(beverageAndBevRevContainer);
         }
+
+
+        model.addAttribute("reservationWithBeverages", listOfUpcomingBeverageReservationsWithBeverageNames);
+        model.addAttribute("drinksMap", drinksMap);
+
+
+
 
         for (Map.Entry<Integer, List<BeverageAndBevRevContainer>> entry : resToBevMap.entrySet()) {
             System.out.println("Reservation ID: " + entry.getKey());
