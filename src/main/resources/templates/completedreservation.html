@@ -19,14 +19,16 @@
         <p><strong>Reservation Date:</strong> <span th:text="${reservation.reservationDate}"></span></p>
         <p><strong>Time:</strong> <span th:text="${reservation.time}"></span></p>
         <p><strong>Duration (hours):</strong> <span th:text="${reservation.durationInHours}"></span></p>
+        <p><strong>Celebration:</strong> <span th:text="${reservation.celebration}"></span></p>
+        <p><strong>Birthday:</strong> <span th:text="${reservation.birthday}"></span></p>
         <p><strong>Comments:</strong> <span th:text="${reservation.comments}"></span></p>
     </div>
 
     <h3>Pre-ordered Beverages</h3>
     <div class="beverage-list">
-        <div th:each="beverageReservation : ${listOfBeverageReservations}" class="beverage-item">
-            <p><strong>Beverage:</strong> <span th:text="${beverageReservation.beverageId}"></span></p>
-            <p><strong>Quantity:</strong> <span th:text="${beverageReservation.quantity}"></span></p>
+        <div th:each="beverage : ${listOfBeverageReservations}" class="beverage-item">
+            <p><strong>Beverage:</strong> <span th:text="${beverage.name}"></span></p>
+            <p><strong>Quantity:</strong> <span th:text="${beverage.quantity}"></span></p>
         </div>
     </div>
 </div>

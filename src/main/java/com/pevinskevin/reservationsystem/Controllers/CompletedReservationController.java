@@ -1,6 +1,5 @@
 package com.pevinskevin.reservationsystem.Controllers;
 
-import com.pevinskevin.reservationsystem.Models.BeverageReservation;
 import com.pevinskevin.reservationsystem.Models.Reservation;
 import com.pevinskevin.reservationsystem.Services.BeverageReservationService;
 import com.pevinskevin.reservationsystem.Services.ReservationService;
@@ -25,8 +24,7 @@ public class CompletedReservationController {
         Reservation reservation = reservationService.getReservationByUrl(reservationUrl);
         int reservationId = reservationService.getReservationIdUsingReservationUrl(reservationUrl);
         model.addAttribute("reservation", reservation);
-        model.addAttribute("beverageReservation", new BeverageReservation());
-        model.addAttribute("listOfBeverageReservations", beverageReservationService.getListOfBeverageReservationsUsingReservationId(reservationId));
+        model.addAttribute("listOfBeverageReservations", beverageReservationService.getBeverageNamesAndQuantitiesByReservationId(reservationId));
         return "completedReservation";
     }
 }

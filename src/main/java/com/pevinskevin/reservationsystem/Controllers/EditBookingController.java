@@ -31,6 +31,13 @@ public class EditBookingController {
                                         @PathVariable String reservationUrl,
                                         @ModelAttribute("reservation") Reservation reservation){
 
+        // Set default values if checkboxes are unchecked
+        if (reservation.getCelebration() == null) {
+            reservation.setCelebration("false");
+        }
+        if (reservation.getBirthday() == null) {
+            reservation.setBirthday("false");
+        }
         reservationService.updateReservation(reservation, reservationUrl);
         return "redirect:/" + adminUrl;
     }

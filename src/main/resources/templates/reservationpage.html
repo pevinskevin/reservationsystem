@@ -62,15 +62,13 @@
             </div>
 
             <div class="form-group checkbox-group">
-                <input type="hidden" th:field="*{celebration}" value="false"/>
                 <label for="celebration" class="checkbox-label">Celebration:</label>
-                <input th:field="*{celebration}" type="checkbox" id="celebration" value="true"/>
+                <input th:field="*{celebration}" type="checkbox" id="celebration" value="true" th:checked="${reservation.celebration == 'true'}"/>
             </div>
 
             <div class="form-group checkbox-group">
-                <input type="hidden" th:field="*{birthday}" value="false"/>
                 <label for="birthday" class="checkbox-label">Birthday:</label>
-                <input th:field="*{birthday}" type="checkbox" id="birthday" value="true"/>
+                <input th:field="*{birthday}" type="checkbox" id="birthday" value="true" th:checked="${reservation.birthday == 'true'}"/>
             </div>
 
             <div class="form-group">

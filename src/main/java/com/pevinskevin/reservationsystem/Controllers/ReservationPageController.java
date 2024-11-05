@@ -102,6 +102,13 @@ public class ReservationPageController {
             int totalAvailableSeats = (realTotalSeatCapacity - unavailableSeats);
             int numberOfGuests = reservation.getNumberOfSeats();
             if (totalAvailableSeats >= numberOfGuests) {
+                // Set default values if checkboxes are unchecked
+                if (reservation.getCelebration() == null) {
+                    reservation.setCelebration("false");
+                }
+                if (reservation.getBirthday() == null) {
+                    reservation.setBirthday("false");
+                }
                 String reservationUrl = reservationService.createReservation(reservation);
                 //Get the ID for the newly created reservation.
                 //Use the ID for creating a new beverage reservation.

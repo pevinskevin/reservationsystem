@@ -66,9 +66,9 @@ public class ReservationRepository {
     public String addReservation(Reservation reservation) {
         String url = UUID.randomUUID().toString();
         String query = "INSERT INTO Reservation" +
-                " (name, email, company_name, phone_number, number_of_seats, reservation_date, time, duration_in_hours, comments, url)" +
-                " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        jdbcTemplate.update(query, reservation.getName(), reservation.getEmail(), reservation.getCompanyName(), reservation.getPhoneNumber(), reservation.getNumberOfSeats(), reservation.getReservationDate(), reservation.getTime(), reservation.getDurationInHours(), reservation.getComments(), url);
+                " (name, email, company_name, phone_number, number_of_seats, reservation_date, time, duration_in_hours, celebration, birthday, comments, url)" +
+                " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        jdbcTemplate.update(query, reservation.getName(), reservation.getEmail(), reservation.getCompanyName(), reservation.getPhoneNumber(), reservation.getNumberOfSeats(), reservation.getReservationDate(), reservation.getTime(), reservation.getDurationInHours(), reservation.getCelebration(), reservation.getBirthday(), reservation.getComments(), url);
         return url;
     }
 

@@ -1,6 +1,8 @@
 package com.pevinskevin.reservationsystem.Controllers;
 
+import com.pevinskevin.reservationsystem.Models.BeverageHelper;
 import com.pevinskevin.reservationsystem.Models.BeverageReservation;
+import com.pevinskevin.reservationsystem.Models.BeverageAndBevRevContainer;
 import com.pevinskevin.reservationsystem.Models.Reservation;
 import com.pevinskevin.reservationsystem.Services.AdminService;
 import com.pevinskevin.reservationsystem.Services.BeverageReservationService;
@@ -58,49 +60,51 @@ public class AdminFrontPageController {
 
 
         //Creates list of reservation IDs
-        List<Integer> reservationIds = new ArrayList<>();
-        for ( int i = 0; i < reservations.size(); i++) {
+        List<Integer> upcomingReservationIds = new ArrayList<>();
+        for (int i = 0; i < reservations.size(); i++) {
             Reservation reservation = reservations.get(i);
-            reservationIds.add(reservation.getId());
+            upcomingReservationIds.add(reservation.getId());
         }
 
-        //Gets list of bev reservations using list of res. IDs
-        List<BeverageReservation> listOfBevReservationsUsingIds = new ArrayList<>();
-        for (int i = 0; i < reservationIds.size(); i++){
-            int reservationId = reservationIds.get(i);
-            listOfBevReservationsUsingIds.addAll(beverageReservationService.getListOfBeverageReservationsUsingReservationId(reservationId));
+        //Gets list of Bev Reservations using list of res. IDs
+        List<BeverageReservation> listOfUpcomingBeverageReservations = new ArrayList<>();
+        for (int i = 0; i < upcomingReservationIds.size(); i++){
+            int reservationId = upcomingReservationIds.get(i);
+            listOfUpcomingBeverageReservations.addAll(beverageReservationService.getListOfBeverageReservationsUsingReservationId(reservationId));
         }
 
-        List<String> listOfBeverageNames = new ArrayList<>();
-        for (int i = 0; i < listOfBevReservationsUsingIds.size(); i++){
-            listOfBevReservationsUsingIds.get(i);
+        List<BeverageAndBevRevContainer> listOfUpcomingBeverageReservationsWithBeverageNames = new ArrayList<>();
+        for (int i = 0; i < upcomingReservationIds.size(); i++){
+            int reservationId = upcomingReservationIds.get(i);
+            List<BeverageReservation> beverageReservationList = beverageReservationService.getListOfBeverageReservationsUsingReservationId(reservationId);
+            List<BeverageHelper> beverageNameandQuantityList = beverageReservationService.getBeverageNamesAndQuantitiesByReservationId(reservationId);
+            BeverageAndBevRevContainer beverageAndBevRevContainer = new BeverageAndBevRevContainer(beverageReservationList, beverageNameandQuantityList);
+            listOfUpcomingBeverageReservationsWithBeverageNames.add(beverageAndBevRevContainer);
         }
 
         // Map to store reservation IDs and their associated list of beverage reservations
-        Map<Integer, List<BeverageReservation>> reservationToBeverageMap = new HashMap<>();
+        Map<Integer, List<BeverageAndBevRevContainer>> resToBevMap = new HashMap<>();
         // Iterate over the list of BeverageReservation objects
-        for (BeverageReservation beverageReservation : listOfBevReservationsUsingIds) {
-            int reservationId = beverageReservation.getReservationId();
+        for (BeverageAndBevRevContainer beverageAndBevRevContainer : listOfUpcomingBeverageReservationsWithBeverageNames) {
+            int reservationId = beverageAndBevRevContainer.getBeverageReservations().getFirst().getReservationId();
             // Check if the reservation ID already exists in the map
-            if (!reservationToBeverageMap.containsKey(reservationId)) {
+            if (!resToBevMap.containsKey(reservationId)) {
                 // If not, create a new list for this reservation ID
-                reservationToBeverageMap.put(reservationId, new ArrayList<>());
+                resToBevMap.put(reservationId, new ArrayList<>());
             }
             // Add the beverage reservation to the list for this reservation ID
-            reservationToBeverageMap.get(reservationId).add(beverageReservation);
+            resToBevMap.get(reservationId).add(beverageAndBevRevContainer);
         }
 
-        for (Map.Entry<Integer, List<BeverageReservation>> entry : reservationToBeverageMap.entrySet()) {
+        for (Map.Entry<Integer, List<BeverageAndBevRevContainer>> entry : resToBevMap.entrySet()) {
             System.out.println("Reservation ID: " + entry.getKey());
-            List<BeverageReservation> beverageReservations = entry.getValue();
-            for (BeverageReservation beverageReservation : beverageReservations) {
-                System.out.println("Beverage ID: " + beverageReservation.getBeverageId() + ", Quantity: " + beverageReservation.getQuantity());
+            List<BeverageAndBevRevContainer> beverageReservations = entry.getValue();
+
+            for (int i = 0; i < beverageReservations.getFirst().getHelperClasses().size() ; i++) {
+                i += 0;
+                System.out.println("Beverage ID: " + beverageReservations.getFirst().getHelperClasses().get(i).getName() + ", Quantity: " + beverageReservations.getFirst().getHelperClasses().get(i).getQuantity());
             }
         }
-
-
-
-
 
         return "adminview";
     }

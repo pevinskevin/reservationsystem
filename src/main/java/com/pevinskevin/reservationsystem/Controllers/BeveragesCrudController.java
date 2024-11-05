@@ -1,7 +1,6 @@
 package com.pevinskevin.reservationsystem.Controllers;
 
 import com.pevinskevin.reservationsystem.Models.Beverage;
-import com.pevinskevin.reservationsystem.Repositories.BeverageRepository;
 import com.pevinskevin.reservationsystem.Services.BeverageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,8 +12,6 @@ public class BeveragesCrudController {
 
     @Autowired
     BeverageService beverageService;
-    @Autowired
-    private BeverageRepository beverageRepository;
 
     //Beverage front page
     @GetMapping("/{adminUrl}/beveragescrud")
@@ -77,7 +74,7 @@ public class BeveragesCrudController {
     @PostMapping("/{adminUrl}/deletebeverage")
     public String deleteBeverage(@PathVariable String adminUrl,
                                  @RequestParam("beverageid") int beverageId){
-        beverageRepository.deleteBeverage(beverageId);
+        beverageService.deleteBeverage(beverageId);
         return "redirect:/" + adminUrl + "/beveragescrud";
     }
 }
