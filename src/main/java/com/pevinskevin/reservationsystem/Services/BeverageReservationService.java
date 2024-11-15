@@ -19,10 +19,6 @@ public class BeverageReservationService {
         beverageReservationRepository.createBeverageReservation(reservationId, beverageId, beverageQuantity);
     }
 
-    public List<BeverageReservation> getListOfBeverageReservationsUsingReservationId(int reservationId){
-        return beverageReservationRepository.getListOfBeverageReservationsUsingReservationId(reservationId);
-    }
-
     public List<BeverageHelper> getBeverageNamesAndQuantitiesByReservationId(int id){
         return beverageReservationRepository.getBeverageNamesAndQuantitiesByReservationId(id);
     }

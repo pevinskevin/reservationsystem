@@ -21,12 +21,6 @@ public class ReservationService {
     ReservationRepository reservationRepository;
 
     public String createReservation(Reservation reservation){
-       /* if (!checkAvailableTables(reservation.getReservationDate(), reservation.getReservationDurationInHours(), reservation.getNumberOfSeats()).isEmpty()) {
-            reservationRepository.save(reservation);
-        } else {
-            return null;
-        }*/
-
         return reservationRepository.addReservation(reservation);
     }
 
@@ -52,10 +46,6 @@ public class ReservationService {
 
     public Reservation getReservationByUrl(String Url) {
         return reservationRepository.getReservationByUrl(Url);
-    }
-
-    public void addBeverageReservationsToReservation(Reservation reservation, Set<BeverageReservation> beverageReservations) {
-        reservation.setBeverageReservations(beverageReservations);
     }
 
     public void assignTableToReservation(int reservationId, int tableId) {

@@ -126,7 +126,7 @@ public class ReservationRepository {
             if (result != null) {
                 resultList.add(result);
             } else {
-                resultList.add(0); // Add 0 to resultList when result is null
+                resultList.add(0);
             }
         }
         return resultList;

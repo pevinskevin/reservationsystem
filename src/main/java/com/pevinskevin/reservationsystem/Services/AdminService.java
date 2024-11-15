@@ -20,29 +20,4 @@ public class AdminService {
     public List<Reservation> getAllReservations(List<Integer> listOfIds) {
         return adminRepository.getAllReservations(listOfIds);
     }
-
-    public void addBeverageToDb(){}
-
-    public void deleteBeverageFromDb(){}
-
-    public void editBeverageToDb(){}
-
-    public void addBeverageToReservation(){}
-
-    public void deleteBeverageFromReservation(){}
-
-    public void editBeverageToReservation(){}
-
-    public void assignTableToReservation(){}
-
-    public void removeTableFromReservation(){}
-
-    public void deleteTableFromReservation(){}
-
-    public void updateTable(){};
-
-
-
-
-
 }

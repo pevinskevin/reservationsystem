@@ -32,5 +32,4 @@ public class BeverageService {
     public void deleteBeverage(int id){
         beverageRepository.deleteBeverage(id);
     }
-
-    }
+}

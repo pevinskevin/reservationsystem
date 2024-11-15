@@ -31,7 +31,7 @@ public class EditBookingController {
                                         @PathVariable String reservationUrl,
                                         @ModelAttribute("reservation") Reservation reservation){
 
-        // Set default values if checkboxes are unchecked
+        // Default values if checkboxes are unchecked
         if (reservation.getCelebration() == null) {
             reservation.setCelebration("false");
         }
