@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Opret ny drikkevare</title>
+  <link rel="stylesheet" th:href="@{/resources/static/stylesheet.css}">
+</head>
+<body>
+
+<section class="beverage-creation" id="beverage-creation">
+  <div class="container">
+    <h2>Opret ny drikkevare</h2>
+    <form th:action="@{'/'+ ${adminUrl} + '/postnewbeverage'}" th:object="${beverage}" method="post" class="beverage-form">
+
+      <div class="form-group">
+        <label for="name">Drikkevare navn:</label>
+        <input th:field="*{name}" type="text" id="name" name="name" class="input-field"/>
+      </div>
+
+      <div class="form-group">
+        <label for="price">Pris:</label>
+        <input th:field="*{price}" type="number" id="price" name="price" class="input-field"/>
+      </div>
+
+      <button type="submit" class="btn">Opret drikkevare</button>
+    </form>
+  </div>
+</section>
+
+</body>
+</html>

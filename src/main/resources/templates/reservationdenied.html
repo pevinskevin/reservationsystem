@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking Mislykkedes</title>
+    <link rel="stylesheet" th:href="@{/resources/static/stylesheet.css}">
+</head>
+<body>
+
+<section class="reservation-status">
+    <div class="container">
+        <p>Booking mislykkedes. Antallet af ønskede pladser i det angivne tidsrum overstiger den nuværende ledige kapacitet på: <span th:text="${numberOfAvailableSeats}"></span></p>
+    </div>
+</section>
+
+</body>
+</html>

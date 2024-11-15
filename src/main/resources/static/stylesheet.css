@@ -1,0 +1,783 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #333;
+    background-color: #f1ece4;
+
+}
+
+h1, h2 {
+    font-family: 'Playfair Display', serif;
+    color: #3e2723;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 40px 0;
+}
+
+.btn {
+    background-color: #6d4c41;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #5d4037;
+}
+
+.hero {
+    background-image: url('baggrund.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+}
+
+.hero-content {
+    position: relative;
+    top: -25%;
+    background-color: #f1ece4;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.hero-content p {
+    color: #333;
+    font-style: italic;
+}
+
+.about {
+    background-color: #fff;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.booking {
+    background-color: #f1ece4;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.booking-form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.booking-form label {
+    font-weight: bold;
+}
+
+.booking-form input, .booking-form textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.booking-form button {
+    background-color: #6d4c41;
+    color: #fff;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.booking-form button:hover {
+    background-color: #5d4037;
+}
+
+.error-message {
+    color: #d9534f;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.quick-booking {
+    text-align: center;
+    padding: 40px 0;
+}
+
+.centerDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.centerbutton button {
+    background-color: #6d4c41;
+    color: #fff;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.centerbutton button:hover {
+    background-color: #5d4037;
+}
+
+
+.admin-login {
+    background-color: #fff;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.loginform {
+    margin-bottom: 20px;
+}
+
+
+
+.booking-form div {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+input[type="checkbox"] {
+    width: auto;
+    margin-left: 10px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.admin-container {
+    width: 90%;
+    margin: 40px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #3e2723;
+}
+
+.reservations-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.reservations-table thead {
+    background-color: #6d4c41;
+    color: #fff;
+}
+
+.reservations-table th, .reservations-table td {
+    padding: 15px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.reservations-table th {
+    font-weight: bold;
+}
+
+.reservations-table tbody tr:nth-child(even) {
+    background-color: #f7f2e7;
+}
+
+.inline-form {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.reservations-table tbody tr {
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ddd;
+}
+
+/* Button styling */
+.btn {
+    background-color: #6d4c41;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #5d4037;
+}
+
+.btn-danger {
+    background-color: #d9534f;
+}
+
+.btn-danger:hover {
+    background-color: #c9302c;
+}
+
+.btn-secondary {
+    background-color: #5a6268;
+}
+
+.btn-secondary:hover {
+    background-color: #343a40;
+}
+
+/* Beverage CRUD button alignment */
+.centerDiv {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.centerDiv button {
+    padding: 10px 20px;
+    background-color: #6d4c41;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.centerDiv button:hover {
+    background-color: #5d4037;
+}
+
+/* Admin Reservation Card Styling */
+.reservation-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.reservation-card h3 {
+    color: #3e2723;
+    margin-bottom: 10px;
+}
+
+.reservation-details {
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #6d4c41;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.action-buttons form {
+    display: inline;
+}
+
+.action-buttons button {
+    padding: 10px 15px;
+    background-color: #6d4c41;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.action-buttons button:hover {
+    background-color: #5d4037;
+}
+
+.action-buttons .btn-danger {
+    background-color: #d9534f;
+}
+
+.action-buttons .btn-danger:hover {
+    background-color: #c9302c;
+}
+
+/* Cafe Table Assignment Styling */
+.cafe-table-container {
+    width: 90%;
+    margin: 40px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cafe-table-container tr {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    background-color: #f7f2e7;
+    border-radius: 10px;
+}
+
+.cafe-table-container td {
+    flex: 1;
+    text-align: left;
+    padding: 10px;
+    color: #3e2723;
+}
+
+.cafe-table-container .buttonform {
+    display: inline-block;
+}
+
+.cafe-table-container button {
+    background-color: #6d4c41;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.cafe-table-container button:hover {
+    background-color: #5d4037;
+}
+
+/* Beverage Reservation Page Styling */
+.beverage-reservation-container {
+    width: 80%;
+    margin: 40px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.beverage-reservation-container h2 {
+    margin-bottom: 20px;
+    color: #3e2723;
+}
+
+.beverage-table {
+    width: 100%;
+    margin-bottom: 20px;
+    border-collapse: collapse;
+}
+
+.beverage-table thead {
+    background-color: #6d4c41;
+    color: #fff;
+}
+
+.beverage-table th,
+.beverage-table td {
+    padding: 15px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.beverage-table tbody tr:nth-child(even) {
+    background-color: #f7f2e7;
+}
+
+.quantity-select {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Form Actions */
+.form-actions {
+    margin-top: 20px;
+}
+
+.btn {
+    background-color: #6d4c41;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #5d4037;
+}
+
+.btn-primary {
+    background-color: #6d4c41;
+}
+
+.btn-primary:hover {
+    background-color: #5d4037;
+}
+
+.btn-secondary {
+    background-color: #5a6268;
+}
+
+.btn-secondary:hover {
+    background-color: #343a40;
+}
+
+/* No Preorder Form */
+.no-preorder-form {
+    margin-top: 20px;
+}
+
+/* Reservation Details Container */
+.reservation-details-container {
+    width: 80%;
+    margin: 40px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.reservation-details-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #3e2723;
+}
+
+.reservation-info {
+    margin-bottom: 20px;
+    font-size: 1.1em;
+    color: #333;
+}
+
+.reservation-info p {
+    margin-bottom: 10px;
+}
+
+.reservation-info strong {
+    color: #6d4c41;
+}
+
+/* Pre-ordered Beverages List */
+.beverage-list {
+    background-color: #f1ece4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.beverage-item {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.beverage-item:last-child {
+    border-bottom: none;
+}
+
+.beverage-item p {
+    margin-bottom: 5px;
+    color: #3e2723;
+}
+
+/* Beverage List Section Styling */
+.beverage-container {
+    width: 90%;
+    margin: 40px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.beverage-card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #f7f2e7;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.beverage-card p {
+    color: #3e2723;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.beverage-card .buttonform {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.beverage-card button {
+    padding: 10px 20px;
+    background-color: #6d4c41;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.beverage-card button:hover {
+    background-color: #5d4037;
+}
+
+/* New Beverage Form Styling */
+.new-beverage-form {
+    width: 60%;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.new-beverage-form label {
+    font-weight: bold;
+    color: #3e2723;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.new-beverage-form input[type="text"],
+.new-beverage-form input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.new-beverage-form input[type="submit"] {
+    background-color: #6d4c41;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.new-beverage-form input[type="submit"]:hover {
+    background-color: #5d4037;
+}
+
+/* Beverage Reservation Page Styling */
+.beverage-reservation-container {
+    width: 80%;
+    margin: 40px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.beverage-reservation-container h2 {
+    margin-bottom: 20px;
+    color: #3e2723;
+}
+
+.beverage-table {
+    width: 100%;
+    margin-bottom: 20px;
+    border-collapse: collapse;
+}
+
+.beverage-table thead {
+    background-color: #6d4c41;
+    color: #fff;
+}
+
+.beverage-table th,
+.beverage-table td {
+    padding: 15px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.beverage-table tbody tr:nth-child(even) {
+    background-color: #f7f2e7;
+}
+
+.quantity-select {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Form Actions */
+.form-actions {
+    margin-top: 20px;
+}
+
+.btn-primary {
+    background-color: #6d4c41;
+}
+
+.btn-primary:hover {
+    background-color: #5d4037;
+}
+
+/* Reservation Details Styling */
+.reservation-details-container {
+    width: 80%;
+    margin: 40px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.reservation-details-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #3e2723;
+}
+
+.reservation-info {
+    margin-bottom: 20px;
+    font-size: 1.1em;
+    color: #333;
+}
+
+.reservation-info p {
+    margin-bottom: 10px;
+}
+
+.reservation-info strong {
+    color: #6d4c41;
+}
+
+/* Pre-ordered Beverages List */
+.beverage-list {
+    background-color: #f1ece4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.beverage-item {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.beverage-item:last-child {
+    border-bottom: none;
+}
+
+.beverage-item p {
+    margin-bottom: 5px;
+    color: #3e2723;
+}
+/* Edit Beverage Form Styles */
+.edit-beverage-container {
+    width: 80%;
+    margin: 40px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.edit-beverage-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #3e2723;
+}
+
+.edit-beverage-form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.edit-beverage-form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.edit-beverage-form input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.edit-beverage-form button {
+    background-color: #6d4c41;
+    color: #fff;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.edit-beverage-form button:hover {
+    background-color: #5d4037;
+}
+
+/* Reservation Status Section Styling */
+.reservation-status {
+    background-color: #fff;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.reservation-status p {
+    font-size: 1.2em;
+    color: #d9534f;
+    margin: 0;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+

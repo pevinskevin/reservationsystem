@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Available Tables</title>
+    <link rel="stylesheet" th:href="@{/resources/static/stylesheet.css}">
+</head>
+<body>
+
+<section class="cafe-tables" id="cafe-tables">
+    <div class="container">
+        <h2>Tilgængelige borde</h2>
+        <div class="cafe-table-container">
+            <div class="cafe-table-card" th:each="cafetable : ${availableTables}">
+                <div class="table-details">
+                    <p><strong>Bord ID:</strong> <span th:text="${cafetable.id}"></span></p>
+                    <p><strong>Sædekapacitet:</strong> <span th:text="${cafetable.seatCapacity}"></span></p>
+                    <p><strong>Bordnummer:</strong> <span th:text="${cafetable.tableNumber}"></span></p>
+                </div>
+                <div class="action-buttons">
+                    <form class="buttonform" th:action="@{'/'+ ${adminUrl} + '/' + ${reservationUrl} }" th:object="${cafetable}" method="post">
+                        <button type="submit" class="btn">Tildel bord</button>
+                        <input type="hidden" name="cafeTableId" th:value="${cafetable.id}"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

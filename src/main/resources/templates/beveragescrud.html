@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Beverage Management</title>
+    <link rel="stylesheet" th:href="@{/resources/static/stylesheet.css}">
+</head>
+<body>
+
+<section class="beverage-management" id="beverage-management">
+    <div class="container">
+        <h2>Administrering af drikkevarer</h2>
+
+        <div class="beverage-card-container">
+            <div class="beverage-card" th:each="beverage : ${listOfBeverages}">
+                <div class="beverage-details">
+                    <p><strong>Drikkevare:</strong> <span th:text="${beverage.getName()}"></span></p>
+                    <p><strong>Pris:</strong> <span th:text="${beverage.getPrice()}"></span></p>
+                </div>
+                <div class="action-buttons">
+                    <form class="buttonform" th:action="@{'/'+ ${adminUrl} + '/editbeverage'}" method="post">
+                        <input type="hidden" name="beverageid" th:value="${beverage.id}" />
+                        <button type="submit" class="btn btn-secondary">Rediger drikkevare</button>
+                    </form>
+                    <form class="buttonform" th:action="@{'/'+ ${adminUrl} + '/deletebeverage'}" th:object="${beverage}" method="post">
+                        <input type="hidden" name="beverageid" th:value="${beverage.id}" />
+                        <button type="submit" class="btn btn-danger">Slet drikkevare</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="centerDiv">
+            <form class="buttonform" th:action="@{'/'+ ${adminUrl} + '/redirectnewbeverage'}" method="post">
+                <button type="submit" class="btn">Opret ny drikkevare</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Beverage Reservation</title>
+  <link rel="stylesheet" th:href="@{/resources/static/stylesheet.css}">
+</head>
+<body>
+
+<div class="beverage-reservation-container">
+  <h2>Rediger forudbestilling af drikkevarer</h2>
+  <form th:action="@{'/' + ${adminUrl} + '/editbeveragepreorder/' + ${reservationUrl}}"
+        th:object="${editBeverageWrapper}" method="post" class="beverage-reservation-form">
+    <table class="beverage-table">
+      <thead>
+      <tr>
+        <th>Beverage Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="helper, iterStat : ${editBeverageWrapper.editHelpers}">
+        <td th:text="${helper.beverageName}"></td>
+        <td th:text="${helper.price}"></td>
+        <td>
+          <input type="number" th:field="*{editHelpers[__${iterStat.index}__].quantity}" min="0" />
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">Submit Pre-order</button>
+    </div>
+  </form>
+
+
+
+
+  <form th:action="@{'/nobeveragereservation/' + ${reservationUrl}}" method="post" class="no-preorder-form">
+    <button type="submit" class="btn btn-secondary">I do not wish to pre-order drinks</button>
+  </form>
+</div>
+
+</body>
+</html>

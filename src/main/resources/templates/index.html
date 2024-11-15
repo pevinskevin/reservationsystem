@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/resources/static/stylesheet.css}">
+</head>
+
+<body>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>Velkommen til jernbanecaféen</h1>
+        <p>Her møder du ikke kun de kendte, men også alle dem, du kommer til at kende.</p>
+    </div>
+</section>
+
+<section class="quick-booking">
+    <div class="centerDiv">
+        <form action="/booking" method="post" class="centerbutton">
+            <button type="submit">Klik her for at reservere plads i caféen</button>
+            <input type="hidden" name="data" value="additionalData"/>
+        </form>
+    </div>
+</section>
+
+<section class="about" id="about">
+    <div class="container">
+        <h2>Om jerbanecaféen</h2>
+        <p><i>"Siden 1933 har Jernbanecafeen haft adressen Reventlowsgade 16. Min oldefar, Thomas Christensen, købte Jernbanecafeen i 1970.
+            Han drev det i 10 år efter at have haft værtshuset Kilden i Valby i 15 år og før det Øster Tørslev Kro ved Randers."
+            - Xenia Norre Rasmussen ejer i 4. generation</i></p>
+        <p>Vælger du værtshusets egen øl
+            gi’r vi dig dit helt eget klippekort, og vi klipper hver gang, uanset om du køber 7 Ekspressen på fad eller flaske.
+            Efter 10 klip har du hygget dig til bronzemedalje, men du kan også vælge at fortsætte til sølv eller guld eller vores nye flagmedalje!
+            Vi bestræber os på at tage fotos af alle guld- og flagmedaljevindere, mens medaljesangen afspilles. Medaljevinderne kommer i centrum og gæsterne klapper som oftest. Herefter trykker og ophænger vi vinderne billederne som dekoration i Dagligstuen</p>
+    </div>
+</section>
+
+
+
+<section class="admin-login" id="adminpage">
+    <div class="container">
+        <h2>Admin Login</h2>
+        <form th:action="@{'/adminpage'}" th:object="${admin}" method="post">
+            <div class="loginform">
+                <label for="username">Brugernavn:</label>
+                <input th:field="*{userName}" type="text" id="username" name="user"/> <br> <br>
+            </div>
+
+            <div class="loginform">
+                <label for="password">Kodeord:</label>
+                <input th:field="*{password}" type="password" id="password" name="password"/> <br> <br>
+            </div>
+            <input type="submit" value="Login">
+        </form>
+    </div>
+</section>
+
+</body>
+
+</html>

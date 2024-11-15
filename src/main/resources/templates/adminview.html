@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Reservation Management</title>
+    <link rel="stylesheet" th:href="@{/resources/static/stylesheet.css}">
+</head>
+<body>
+<div class="admin-container">
+    <h2>Reservationer med manglende tildeling af borde</h2>
+    <table class="reservations-table">
+        <thead>
+        <tr>
+            <th>Navn</th>
+            <th>Firma navn</th>
+            <th>Reservationsdato</th>
+            <th>Tid</th>
+            <th>Længde i timer</th>
+            <th>Antallet gæster</th>
+            <th>Antallet gæster uden bordplads</th>
+            <th>Handlinger</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="reservation, stat : ${reservation}">
+            <td th:text="${reservation.name}"></td>
+            <td th:text="${reservation.companyName}"></td>
+            <td th:text="${reservation.reservationDate}"></td>
+            <td th:text="${reservation.time}"></td>
+            <td th:text="${reservation.durationInHours}"></td>
+            <td th:text="${reservation.numberOfSeats}"></td>
+            <td th:text="${reservation.numberOfSeats - sumOfAssignedSeats[stat.index]}"></td>
+            <td class="action-buttons">
+                <form th:action="@{'/'+ ${adminUrl} + '/assigntable'}" th:object="${reservation}" method="post" class="inline-form">
+                    <button type="submit" class="btn">Tildel Bord</button>
+                    <input type="hidden" name="reservationUrl" th:value="${reservation.url}" />
+                </form>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+
+    <h2>Oversigt over kommende reservationer</h2>
+    <table class="reservations-table">
+        <thead>
+        <tr>
+            <th>Navn</th>
+            <th>Firma navn</th>
+            <th>Reservationsdato</th>
+            <th>Tid</th>
+            <th>Længde i timer</th>
+            <th>Antallet gæster</th>
+            <th>Designerede borde</th>
+            <th>Forudbestilte drikkevarer/th>
+            <th>Handlinger</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="reservation, stat : ${listOfUpcomingReservations}">
+            <td th:text="${reservation.name}"></td>
+            <td th:text="${reservation.companyName}"></td>
+            <td th:text="${reservation.reservationDate}"></td>
+            <td th:text="${reservation.time}"></td>
+            <td th:text="${reservation.durationInHours}"></td>
+            <td th:text="${reservation.numberOfSeats}"></td>
+            <td>
+                <ul th:if="${tablesByReservation[reservation.id] != null}"
+                    th:each="table : ${tablesByReservation[reservation.id]}">
+                    <li>
+                        <span th:text="'Table ' + ${table.tableNumber}"></span>
+                    </li>
+                </ul>
+            </td>
+            <td>
+                <ul th:if="${drinksMap[reservation.id] != null}" th:each="drink : ${drinksMap[reservation.id]}">
+                    <li>
+                        <span th:text="${drink.name}"></span> x <span th:text="${drink.quantity}"></span>
+                    </li>
+                </ul>
+            </td>
+            <td class="action-buttons">
+                <form th:action="@{'/'+ ${adminUrl} + '/deletebooking'}" th:object="${reservation}" method="post" class="inline-form">
+                    <button type="submit" class="btn btn-danger">Slet reservation</button>
+                    <input type="hidden" name="reservationUrl" th:value="${reservation.url}" />
+                </form>
+                <form th:action="@{'/'+ ${adminUrl} + '/editbooking'}" th:object="${reservation}" method="post" class="inline-form">
+                    <button type="submit" class="btn btn-secondary">Rediger reservation</button>
+                    <input type="hidden" name="reservationUrl" th:value="${reservation.url}" />
+                </form>
+                <form th:action="@{'/'+ ${adminUrl} + '/editbeveragepreorder'}" th:object="${reservation}" method="post" class="inline-form">
+                    <button type="submit" class="btn btn-secondary">Rediger forudbestilte drikkevarer</button>
+                    <input type="hidden" name="reservationUrl" th:value="${reservation.url}" />
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="centerDiv">
+        <form th:action="@{'/'+ ${adminUrl} + '/redirecttobeveragecrud'}" method="post">
+            <button type="submit" class="btn btn-secondary">Administering af drikkevarer</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
