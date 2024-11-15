@@ -9,70 +9,46 @@
 
 <body>
 
-<!-- Hero Section -->
 <section class="hero">
     <div class="hero-content">
-        <h1>Welcome to Café Bliss</h1>
-        <p>Your cozy corner for great coffee, good vibes, and unforgettable moments.</p>
-        <a href="#booking" class="btn">Book a Table</a>
+        <h1>Velkommen til jernbanecaféen</h1>
+        <p>Her møder du ikke kun de kendte, men også alle dem, du kommer til at kende.</p>
     </div>
 </section>
 
-<!-- About Section -->
 <section class="about" id="about">
     <div class="container">
-        <h2>About Us</h2>
-        <p>At Café Bliss, we believe in the perfect blend of quality, ambiance, and hospitality. Our coffee beans are ethically sourced, and every cup is crafted with passion. Come in, take a seat, and experience our delightful menu filled with locally inspired treats and fresh brews.</p>
+        <h2>Om jerbanecaféen</h2>
+        <p><i>"Siden 1933 har Jernbanecafeen haft adressen Reventlowsgade 16. Min oldefar, Thomas Christensen, købte Jernbanecafeen i 1970.
+            Han drev det i 10 år efter at have haft værtshuset Kilden i Valby i 15 år og før det Øster Tørslev Kro ved Randers."
+            - Xenia Norre Rasmussen ejer i 4. generation</i></p>
+        <p>Vælger du værtshusets egen øl
+            gi’r vi dig dit helt eget klippekort, og vi klipper hver gang, uanset om du køber 7 Ekspressen på fad eller flaske.
+            Efter 10 klip har du hygget dig til bronzemedalje, men du kan også vælge at fortsætte til sølv eller guld eller vores nye flagmedalje!
+            Vi bestræber os på at tage fotos af alle guld- og flagmedaljevindere, mens medaljesangen afspilles. Medaljevinderne kommer i centrum og gæsterne klapper som oftest. Herefter trykker og ophænger vi vinderne billederne som dekoration i Dagligstuen</p>
     </div>
 </section>
 
-<!-- Booking Section -->
-<section class="booking" id="booking">
-    <div class="container">
-        <h2>Book a Table</h2>
-        <form action="/book" method="post" class="booking-form">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-
-            <label for="date">Date:</label>
-            <input type="date" id="date" name="date" required>
-
-            <label for="time">Time:</label>
-            <input type="time" id="time" name="time" required>
-
-            <label for="guests">Number of Guests:</label>
-            <input type="number" id="guests" name="guests" min="1" max="10" required>
-
-            <button type="submit" class="btn">Reserve Now</button>
-        </form>
-    </div>
-</section>
-
-<!-- Quick Booking Button -->
 <section class="quick-booking">
     <div class="centerDiv">
         <form action="/booking" method="post" class="centerbutton">
-            <button type="submit">Click to create a booking</button>
-            <input type="hidden" name="data" value="additionalData"/>  <!-- Hidden input field -->
+            <button type="submit">Klik her for at reservere plads i caféen</button>
+            <input type="hidden" name="data" value="additionalData"/>
         </form>
     </div>
 </section>
 
-<!-- Admin Login Section -->
 <section class="admin-login" id="adminpage">
     <div class="container">
         <h2>Admin Login</h2>
         <form th:action="@{'/adminpage'}" th:object="${admin}" method="post">
             <div class="loginform">
-                <label for="username">User name:</label>
+                <label for="username">Brugernavn:</label>
                 <input th:field="*{userName}" type="text" id="username" name="user"/> <br> <br>
             </div>
 
             <div class="loginform">
-                <label for="password">Password:</label>
+                <label for="password">Kodeord:</label>
                 <input th:field="*{password}" type="password" id="password" name="password"/> <br> <br>
             </div>
             <input type="submit" value="Login">

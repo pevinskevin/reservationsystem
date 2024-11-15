@@ -79,14 +79,12 @@ public class AdminFrontPageController {
     public String assignTableToReservation(Model model,
                                            @PathVariable String adminUrl,
                                            @RequestParam("reservationUrl") String reservationUrl){
-
         return "redirect:/{adminUrl}/" + reservationUrl;
     }
 
     @PostMapping("/{adminUrl}/deletebooking")
     public String deleteBooking(@PathVariable String adminUrl,
                                            @RequestParam("reservationUrl") String reservationUrl){
-
         reservationService.deleteBookingUsingBookingUrl(reservationUrl);
         return "redirect:/{adminUrl}";
     }

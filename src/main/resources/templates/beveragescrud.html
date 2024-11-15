@@ -14,17 +14,17 @@
         <div class="beverage-card-container">
             <div class="beverage-card" th:each="beverage : ${listOfBeverages}">
                 <div class="beverage-details">
-                    <p><strong>Name:</strong> <span th:text="${beverage.getName()}"></span></p>
-                    <p><strong>Price:</strong> <span th:text="${beverage.getPrice()}"></span></p>
+                    <p><strong>Navn på drikkevare:</strong> <span th:text="${beverage.getName()}"></span></p>
+                    <p><strong>Pris:</strong> <span th:text="${beverage.getPrice()}"></span></p>
                 </div>
                 <div class="action-buttons">
                     <form class="buttonform" th:action="@{'/'+ ${adminUrl} + '/editbeverage'}" method="post">
                         <input type="hidden" name="beverageid" th:value="${beverage.id}" />
-                        <button type="submit" class="btn btn-secondary">Edit Beverage</button>
+                        <button type="submit" class="btn btn-secondary">Rediger drikkevare</button>
                     </form>
                     <form class="buttonform" th:action="@{'/'+ ${adminUrl} + '/deletebeverage'}" th:object="${beverage}" method="post">
                         <input type="hidden" name="beverageid" th:value="${beverage.id}" />
-                        <button type="submit" class="btn btn-danger">Delete Beverage</button>
+                        <button type="submit" class="btn btn-danger">Slet Beverage</button>
                     </form>
                 </div>
             </div>
@@ -32,7 +32,7 @@
 
         <div class="centerDiv">
             <form class="buttonform" th:action="@{'/'+ ${adminUrl} + '/redirectnewbeverage'}" method="post">
-                <button type="submit" class="btn">Create New Beverage</button>
+                <button type="submit" class="btn">Opret ny drikkevare</button>
             </form>
         </div>
     </div>

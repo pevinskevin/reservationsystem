@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 
 @Controller
-public class EditBeverageReservation {
+public class EditBeverageReservationController {
 
     @Autowired
     BeverageService beverageService;

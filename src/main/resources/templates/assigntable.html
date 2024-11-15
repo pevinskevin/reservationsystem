@@ -9,17 +9,17 @@
 
 <section class="cafe-tables" id="cafe-tables">
     <div class="container">
-        <h2>Available Tables</h2>
+        <h2>Tilgængelige borde</h2>
         <div class="cafe-table-container">
             <div class="cafe-table-card" th:each="cafetable : ${availableTables}">
                 <div class="table-details">
-                    <p><strong>Table ID:</strong> <span th:text="${cafetable.id}"></span></p>
-                    <p><strong>Seat Capacity:</strong> <span th:text="${cafetable.seatCapacity}"></span></p>
-                    <p><strong>Table Number:</strong> <span th:text="${cafetable.tableNumber}"></span></p>
+                    <p><strong>Bord ID:</strong> <span th:text="${cafetable.id}"></span></p>
+                    <p><strong>Sædekapacitet:</strong> <span th:text="${cafetable.seatCapacity}"></span></p>
+                    <p><strong>Bordnummer:</strong> <span th:text="${cafetable.tableNumber}"></span></p>
                 </div>
                 <div class="action-buttons">
                     <form class="buttonform" th:action="@{'/'+ ${adminUrl} + '/' + ${reservationUrl} }" th:object="${cafetable}" method="post">
-                        <button type="submit" class="btn">Assign Table</button>
+                        <button type="submit" class="btn">Tildel bord</button>
                         <input type="hidden" name="cafeTableId" th:value="${cafetable.id}"/>
                     </form>
                 </div>

@@ -36,7 +36,7 @@ h1, h2 {
 
 /* Hero Section */
 .hero {
-    background-image: url('cafe-hero.jpg');
+    background-image: url('baggrund.jpg');
     background-size: cover;
     background-position: center;
     height: 100vh;
@@ -764,4 +764,22 @@ h2 {
     background-color: #5d4037;
 }
 
+/* Reservation Status Section Styling */
+.reservation-status {
+    background-color: #fff;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.reservation-status p {
+    font-size: 1.2em;
+    color: #d9534f;
+    margin: 0;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 

@@ -8,27 +8,27 @@
 <body>
 
 <div class="reservation-details-container">
-    <h2>Reservation Details</h2>
+    <h2>Reservationsbekræftelse</h2>
 
     <div class="reservation-info">
-        <p><strong>Name:</strong> <span th:text="${reservation.name}"></span></p>
+        <p><strong>Navn:</strong> <span th:text="${reservation.name}"></span></p>
         <p><strong>Email:</strong> <span th:text="${reservation.email}"></span></p>
-        <p><strong>Company Name:</strong> <span th:text="${reservation.companyName}"></span></p>
-        <p><strong>Phone Number:</strong> <span th:text="${reservation.phoneNumber}"></span></p>
-        <p><strong>Number of Seats:</strong> <span th:text="${reservation.numberOfSeats}"></span></p>
-        <p><strong>Reservation Date:</strong> <span th:text="${reservation.reservationDate}"></span></p>
-        <p><strong>Time:</strong> <span th:text="${reservation.time}"></span></p>
-        <p><strong>Duration (hours):</strong> <span th:text="${reservation.durationInHours}"></span></p>
-        <p><strong>Celebration:</strong> <span th:text="${reservation.celebration}"></span></p>
-        <p><strong>Birthday:</strong> <span th:text="${reservation.birthday}"></span></p>
-        <p><strong>Comments:</strong> <span th:text="${reservation.comments}"></span></p>
+        <p><strong>Firma navn:</strong> <span th:text="${reservation.companyName}"></span></p>
+        <p><strong>Telefonnummer :</strong> <span th:text="${reservation.phoneNumber}"></span></p>
+        <p><strong>Antallet gæster:</strong> <span th:text="${reservation.numberOfSeats}"></span></p>
+        <p><strong>Reservationsdato:</strong> <span th:text="${reservation.reservationDate}"></span></p>
+        <p><strong>Tid:</strong> <span th:text="${reservation.time}"></span></p>
+        <p><strong>Længde (timer):</strong> <span th:text="${reservation.durationInHours}"></span></p>
+        <p><strong>Fejring:</strong> <span th:text="${reservation.celebration}"></span></p>
+        <p><strong>Ønskes der flag på bordene:</strong> <span th:text="${reservation.birthday}"></span></p>
+        <p><strong>Kommentarer:</strong> <span th:text="${reservation.comments}"></span></p>
     </div>
 
-    <h3>Pre-ordered Beverages</h3>
+    <h3>Forudbestilte drikkevarer</h3>
     <div class="beverage-list">
         <div th:each="beverage : ${listOfBeverageReservations}" class="beverage-item">
-            <p><strong>Beverage:</strong> <span th:text="${beverage.name}"></span></p>
-            <p><strong>Quantity:</strong> <span th:text="${beverage.quantity}"></span></p>
+            <p><strong>Drikkevare:</strong> <span th:text="${beverage.name}"></span></p>
+            <p><strong>Antal:</strong> <span th:text="${beverage.quantity}"></span></p>
         </div>
     </div>
 </div>

@@ -11,11 +11,13 @@
 
 <section class="booking" id="booking">
     <div class="container">
-        <h2>Book a Table</h2>
+        <h2>Her kan du reservere plads i vores café til dig og dit selskab.</h2>
+        <p>Notér venligst, at man ikke selv kan vælge hvor i caféen man vil side, da dette håndteres af vores personale efter reservationen er registreret.</p>
+        <p>I vil blive vist til jeres plader af vores venlige personale, når i ankommer på dagen.</p>
         <form th:action="@{'/reservation'}" th:object="${reservation}" method="post" class="booking-form">
 
             <div class="form-group">
-                <label for="name">Name:</label>
+                <label for="name">Navnet reservationen registreres i:</label>
                 <input th:field="*{name}" type="text" id="name" name="name" class="input-field"/>
                 <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error-message">Name Error</span>
             </div>
@@ -27,56 +29,56 @@
             </div>
 
             <div class="form-group">
-                <label for="companyName">Company Name:</label>
+                <label for="companyName">Firma navn (frivilligt):</label>
                 <input th:field="*{companyName}" type="text" id="companyName" name="companyName" class="input-field"/>
             </div>
 
             <div class="form-group">
-                <label for="phoneNumber">Phone Number:</label>
+                <label for="phoneNumber">Telefonnummer:</label>
                 <input th:field="*{phoneNumber}" type="number" id="phoneNumber" name="phoneNumber" class="input-field"/>
                 <span th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="error-message">Phone Number Error</span>
             </div>
 
             <div class="form-group">
-                <label for="numberOfSeats">Number of Attending Guests:</label>
+                <label for="numberOfSeats">Antallet gæster:</label>
                 <input th:field="*{numberOfSeats}" type="number" id="numberOfSeats" name="numberOfSeats" th:attr="min=${minNumberOfGuests}" class="input-field"/>
                 <span th:if="${#fields.hasErrors('numberOfSeats')}" th:errors="*{numberOfSeats}" class="error-message">Number of Attending Guests Error</span>
             </div>
 
             <div class="form-group">
-                <label for="reservationDate">Reservation Date:</label>
+                <label for="reservationDate">Dato:</label>
                 <input th:field="*{reservationDate}" type="date" id="reservationDate" name="reservationDate" th:attr="min=${minDate}" class="input-field"/>
                 <span th:if="${#fields.hasErrors('reservationDate')}" th:errors="*{reservationDate}" class="error-message">Reservation Date Error</span>
             </div>
 
             <div class="form-group">
-                <label for="time">Time:</label>
+                <label for="time">Tid på dagen:</label>
                 <input th:field="*{time}" type="time" id="time" name="time" th:attr="min=${minTime},max=${maxTime},step='900'" class="input-field"/>
                 <span th:if="${#fields.hasErrors('time')}" th:errors="*{time}" class="error-message">Time Error</span>
             </div>
 
             <div class="form-group">
-                <label for="durationInHours">Duration (in Hours):</label>
+                <label for="durationInHours">Hvor mange timer ønsker i at reserve pladserne? Angiv venligst antallet timer i heltal:</label>
                 <input th:field="*{durationInHours}" type="number" id="durationInHours" name="duration" class="input-field"/>
                 <span th:if="${#fields.hasErrors('durationInHours')}" th:errors="*{durationInHours}" class="error-message">Duration Error</span>
             </div>
 
             <div class="form-group checkbox-group">
-                <label for="celebration" class="checkbox-label">Celebration:</label>
+                <label for="celebration" class="checkbox-label">Er der en særlig anledning der fejres?:</label>
                 <input th:field="*{celebration}" type="checkbox" id="celebration" value="true" th:checked="${reservation.celebration == 'true'}"/>
             </div>
 
             <div class="form-group checkbox-group">
-                <label for="birthday" class="checkbox-label">Birthday:</label>
+                <label for="birthday" class="checkbox-label">Ønskes der flag på bordene?:</label>
                 <input th:field="*{birthday}" type="checkbox" id="birthday" value="true" th:checked="${reservation.birthday == 'true'}"/>
             </div>
 
             <div class="form-group">
-                <label for="comments">Comments:</label>
+                <label for="comments">Evt. kommentarer:</label>
                 <textarea th:field="*{comments}" id="comments" name="comments" rows="4" cols="50" class="input-field"></textarea>
             </div>
 
-            <button type="submit" class="btn">Submit Booking</button>
+            <button type="submit" class="btn">Tilføj reservation</button>
         </form>
     </div>
 </section>
