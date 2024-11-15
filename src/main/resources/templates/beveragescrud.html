@@ -9,12 +9,12 @@
 
 <section class="beverage-management" id="beverage-management">
     <div class="container">
-        <h2>Beverage Management</h2>
+        <h2>Administrering af drikkevarer</h2>
 
         <div class="beverage-card-container">
             <div class="beverage-card" th:each="beverage : ${listOfBeverages}">
                 <div class="beverage-details">
-                    <p><strong>Navn på drikkevare:</strong> <span th:text="${beverage.getName()}"></span></p>
+                    <p><strong>Drikkevare:</strong> <span th:text="${beverage.getName()}"></span></p>
                     <p><strong>Pris:</strong> <span th:text="${beverage.getPrice()}"></span></p>
                 </div>
                 <div class="action-buttons">
@@ -24,7 +24,7 @@
                     </form>
                     <form class="buttonform" th:action="@{'/'+ ${adminUrl} + '/deletebeverage'}" th:object="${beverage}" method="post">
                         <input type="hidden" name="beverageid" th:value="${beverage.id}" />
-                        <button type="submit" class="btn btn-danger">Slet Beverage</button>
+                        <button type="submit" class="btn btn-danger">Slet drikkevare</button>
                     </form>
                 </div>
             </div>
